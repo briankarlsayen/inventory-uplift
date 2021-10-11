@@ -4,6 +4,7 @@
   text-transform: uppercase;
   letter-spacing: 10px;
   color: green;
+  padding-top: 80px;
 }
 .subtitle {
   font-size: 18px;
@@ -21,6 +22,9 @@
 .inventory__nav {
   background: lightgray;
   padding: 20px;
+  position: fixed;
+  width: 100%;
+  z-index: 3;
 }
 
 nav ul li a {
@@ -106,7 +110,7 @@ nav ul li {
 
 .inventory__summary {
   width: 500px;
-  margin: 20px;
+  margin: 0 auto;
 }
 
 .inventory__card img {

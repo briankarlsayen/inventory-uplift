@@ -1,15 +1,9 @@
 import React from 'react'
-import InventorySummary from './InventorySummary'
-function InventoryHome({item}) {
+function InventoryHome() {
   return (
-    <div className="inventory__items">
-        <p className="inventoryTitle__sub">Items:</p>
-        <ul>
-        {item.items.map((item, index) => (
-          <InventorySummary key={index} item={item} />
-        ))}
-        </ul>
-      </div>
+    <div className="inventory__home">
+      <h1>Homepage</h1>
+    </div>
   )
 }
 

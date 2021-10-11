@@ -1,10 +1,10 @@
 import React, {useState} from 'react'
-import InventorySummary from './InventorySummary.js'
 import { Switch, Route, NavLink } from 'react-router-dom'
-
+import InventorySidebar from './InventorySidebar.js'
 import InventoryForm from './InventoryForm'
 import InventoryHome from './InventoryHome.js'
 import InventoryButtons from './InventoryButtons.js'
+import InventoryDetails from './InventoryDetails.js'
 
 function InventoryBody() {
   const [toShow, setToShow] = useState(false)
@@ -17,7 +17,8 @@ function InventoryBody() {
       type: 'furniture',
       image: 'https://cdn.shopify.com/s/files/1/0016/0255/1873/products/Office-black3_480x.png?v=1585409524',
       description: 'Can make your coding speed 10x',
-      price: 5400.00
+      price: 5400.00,
+      id: 1
     },
     {
       title: 'LG Gram 17',
@@ -26,7 +27,8 @@ function InventoryBody() {
       type: 'gadget',
       image: 'https://cdn.vox-cdn.com/thumbor/IaMtMcET0zNsOb9L5aoaEnngeIs=/0x0:2040x1360/1400x933/filters:focal(857x517:1183x843):no_upscale()/cdn.vox-cdn.com/uploads/chorus_image/image/69073751/cfaulkner_20210326_4491_0006.0.jpg',
       description: 'Can do code on its own',
-      price: 105400.00
+      price: 105400.00,
+      id: 2
     },
     {
       title: 'Japanese Kotatsu',
@@ -35,7 +37,8 @@ function InventoryBody() {
       type: 'furniture',
       image: 'https://i.pinimg.com/originals/d5/5f/79/d55f7956e56e5b0370fbaf6e99e51a9f.jpg',
       description: 'Can make your wildest dreams come true',
-      price: 55000.0
+      price: 55000.0,
+      id: 3
     }]
   })
 
@@ -75,9 +78,10 @@ function InventoryBody() {
       <Switch>
         <Route exact path="/add"><InventoryForm item={item} setItem={setItem} /></Route>
         <Route exact path="/buttons"><InventoryButtons showItems={showItems} hideItems={hideItems} toShow={toShow} /></Route>
-        <Route exact path="/home"><InventoryHome item={item} /></Route>
+        <Route path="/home/:id"><InventoryDetails item={item} /></Route>
+        <Route exact path="/home"><InventoryHome /></Route>
       </Switch>
-      
+      <InventorySidebar item={item} />
     </div>
   )
 }
