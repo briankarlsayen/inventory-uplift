@@ -4,16 +4,17 @@ import InventorySummary from './InventorySummary';
 import InventoryNotFound from './InventoryNotFound'
 
 function InventoryDetails({item}) {
-  const [found, setFound] = useState(true)
+  const [found, setFound] = useState(false)
   let { id } = useParams();
-  let singleItem = item.items[id];
   
+  let singleItem = item.items[id];
   //error on id is greater then length
   useEffect(()=>{
     if(item.items.length < id){
-      setFound(false)
+      return setFound(false)
     }
-  },[])
+      setFound(true)
+  },[singleItem])
  
   return (
     <div className="inventory__items">
@@ -21,7 +22,6 @@ function InventoryDetails({item}) {
         <InventorySummary item={singleItem} /> :
         <InventoryNotFound />
       }
-      
     </div>
   )
 }
