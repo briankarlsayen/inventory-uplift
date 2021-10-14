@@ -5,9 +5,16 @@ import InventoryForm from './InventoryForm'
 import InventoryHome from './InventoryHome.js'
 import InventoryButtons from './InventoryButtons.js'
 import InventoryDetails from './InventoryDetails.js'
+import InventoryUser from './InventoryUser'
+import InventoryLogin from './InventoryLogin'
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 
 function InventoryBody() {
   const [toShow, setToShow] = useState(false)
+  const [toggle, setToggle] = useState(false)
+  const [logged, setLogged] = useState(false)
+  const [error, setError] = useState(false)
   const [item, setItem] = useState({
     realTitle: '',
     items: [{
@@ -42,6 +49,19 @@ function InventoryBody() {
     }]
   })
 
+  const [ user, setUser ] = useState({
+    users: [
+      {
+        username: 'Sasuke',
+        password: '123456'
+      },
+      {
+        username: 'Ash',
+        password: 'ketchup'
+      }
+    ]
+  })
+
   const hideItems = () => {
     let hide = {...item}
     hide.items.map((val) => (
@@ -63,6 +83,13 @@ function InventoryBody() {
     <div>
       <nav className="inventory__nav">
         <ul>
+          <li onClick={()=>setToggle(!toggle)} className="nav__btn">
+            {
+              toggle ?
+              <MenuIcon /> :
+              <CloseIcon />
+            }
+          </li>
           <li>
             <NavLink activeClassName="nav__active" to="/home">Home</NavLink>
           </li>
@@ -70,18 +97,23 @@ function InventoryBody() {
             <NavLink activeClassName="nav__active" to="/add">Add</NavLink>
           </li>
           <li>
-            <NavLink activeClassName="nav__active" to="/buttons">Show</NavLink>
+            <NavLink activeClassName="nav__active" to="/users">User List</NavLink>
           </li>
+          <li>
+            <NavLink activeClassName="nav__active" to="/login">Login</NavLink>
+          </li>
+          
         </ul>
       </nav>
       <h1 className="inverntory__title">Inventory Page</h1>
       <Switch>
         <Route exact path="/add"><InventoryForm item={item} setItem={setItem} /></Route>
-        <Route exact path="/buttons"><InventoryButtons showItems={showItems} hideItems={hideItems} toShow={toShow} /></Route>
-        <Route path="/home/:id"><InventoryDetails item={item} /></Route>
+        <Route exact path="/login"><InventoryLogin user={user} logged={logged} setLogged={setLogged} /></Route>
+        <Route exact path="/users"><InventoryUser user={user} /></Route>
+        <Route path="/home/:id"><InventoryDetails item={item} setItem={setItem}/></Route>
         <Route exact path="/home"><InventoryHome /></Route>
       </Switch>
-      <InventorySidebar item={item} />
+      <InventorySidebar item={item} toggle={toggle} setToggle={setToggle} />
     </div>
   )
 }

@@ -3,7 +3,8 @@ import {useParams} from 'react-router-dom'
 import InventorySummary from './InventorySummary';
 import InventoryNotFound from './InventoryNotFound'
 
-function InventoryDetails({item}) {
+function InventoryDetails({item, setItem}) {
+  
   const [found, setFound] = useState(false)
   let { id } = useParams();
   
@@ -15,11 +16,10 @@ function InventoryDetails({item}) {
     }
       setFound(true)
   },[singleItem])
- 
   return (
     <div className="inventory__items">
       {found ? 
-        <InventorySummary item={singleItem} /> :
+        <InventorySummary item={singleItem} setItem={setItem} id={id} allItem={item} /> :
         <InventoryNotFound />
       }
     </div>

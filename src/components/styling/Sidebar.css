@@ -9,6 +9,7 @@
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 80px;
   color: white;
+  transition: 1.5s;
 }
 
 /* The navigation menu links */

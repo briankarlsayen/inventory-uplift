@@ -1,0 +1,17 @@
+.toggled {
+  left: 0;
+}
+
+.unToggled {
+  left: -400px;
+}
+
+.colorRed {
+  color: red;
+}
+.colorYellow {
+  color: yellow;
+}
+.colorGreen {
+  color: green;
+}
