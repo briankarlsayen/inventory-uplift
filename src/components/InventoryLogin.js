@@ -1,8 +1,5 @@
 import React, {useState} from 'react'
 import {useHistory} from 'react-router-dom'
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
 
 function InventoryLogin({user, setLogged, logged}) {
   const [username, setUsername] = useState('')
@@ -16,7 +13,6 @@ function InventoryLogin({user, setLogged, logged}) {
   }
 
   const checkUser = () => {
-    //console.log(user.users.length)
     for(let i =0 ; i < user.users.length ; i++){
       // check is username and password is correct
       if(username === user.users[i].username && password === user.users[i].password){
@@ -30,39 +26,33 @@ function InventoryLogin({user, setLogged, logged}) {
 
   return (
     <div className="login">
+      <h2 className="subtitle">Login Form</h2>
       {error && 
         <h2 className="errorMsg">Wrong username or password</h2>
       }
-      <Box
-        component="form"
-        sx={{
-          '& .MuiTextField-root': { m: 1, width: '50ch' },
-        }}
-        noValidate
-        autoComplete="off"
-        onSubmit={handleSubmit}
-      >
-        <div className="inventoryForm__input">
-          <TextField
+        <form autoComplete="off"
+        onSubmit={handleSubmit} >
+        <div className="inventoryLogin__input">
+          <label>Username: </label>
+          <input
             required
             autoComplete="off"
-            id="outlined-required"
-            label="Username"
+            placeholder="Username"
             value={username} onChange={e => setUsername(e.target.value)}
           />
         </div>
-        <div className="inventoryForm__input">
-          <TextField
+        <div className="inventoryLogin__input">
+        <label>Password: </label>
+          <input
             required
             autoComplete="off"
-            id="outlined-required"
-            label="Password"
+            placeholder="Password"
             type="password"
             value={password} onChange={e => setPassword(e.target.value)}
           />
         </div>
-        <Button type="submit" variant="contained">Submit</Button>
-      </Box>
+        <button className="inventoryLogin__btn" type="submit" variant="contained">Submit</button>
+      </form>
     </div>
   )
 }

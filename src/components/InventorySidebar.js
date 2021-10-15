@@ -15,6 +15,7 @@ function InventorySidebar({item, toggle}) {
   }
   return (    
     <div className={navToggle.join(' ')}>
+      <h4>Item stock: </h4>
       <ul>
       {item.items.map((item, index) => (
         <li onClick={()=> history.push(`/home/${index}`)} key={index}>

@@ -7,14 +7,15 @@ import InventoryButtons from './InventoryButtons.js'
 import InventoryDetails from './InventoryDetails.js'
 import InventoryUser from './InventoryUser'
 import InventoryLogin from './InventoryLogin'
-import MenuIcon from '@mui/icons-material/Menu';
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from './icons/close-icon.svg'
+import MenuIcon from './icons/menu-icon.svg'
+import InventoryCheckout from './InventoryCheckout'
 
 function InventoryBody() {
   const [toShow, setToShow] = useState(false)
   const [toggle, setToggle] = useState(false)
   const [logged, setLogged] = useState(false)
-  const [error, setError] = useState(false)
+  const [checkout, setCheckout] = useState([]);
   const [item, setItem] = useState({
     realTitle: '',
     items: [{
@@ -86,8 +87,8 @@ function InventoryBody() {
           <li onClick={()=>setToggle(!toggle)} className="nav__btn">
             {
               toggle ?
-              <MenuIcon /> :
-              <CloseIcon />
+              <img src={MenuIcon} /> :
+              <img src={CloseIcon} />
             }
           </li>
           <li>
@@ -102,6 +103,9 @@ function InventoryBody() {
           <li>
             <NavLink activeClassName="nav__active" to="/login">Login</NavLink>
           </li>
+          <li>
+            <NavLink activeClassName="nav__active" to="/checkout/">Checkout</NavLink>
+          </li>
           
         </ul>
       </nav>
@@ -111,6 +115,7 @@ function InventoryBody() {
         <Route exact path="/login"><InventoryLogin user={user} logged={logged} setLogged={setLogged} /></Route>
         <Route exact path="/users"><InventoryUser user={user} /></Route>
         <Route path="/home/:id"><InventoryDetails item={item} setItem={setItem}/></Route>
+        <Route path="/checkout"><InventoryCheckout/></Route>
         <Route exact path="/home"><InventoryHome /></Route>
       </Switch>
       <InventorySidebar item={item} toggle={toggle} setToggle={setToggle} />

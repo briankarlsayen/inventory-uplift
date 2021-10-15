@@ -67,3 +67,11 @@ p span {
     font-weight: 600;
     text-transform: uppercase;
 }
+
+:root {
+  --navColor: #311E10;
+  --titleColor: #DD6031;
+  --lightOrange: #EABE7C;
+  --lightGreen: #D9DD92;
+  --whiteOrange: #ECE4B7;
+}

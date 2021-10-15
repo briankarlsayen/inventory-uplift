@@ -3,7 +3,7 @@
   padding-bottom: 20px;
   text-transform: uppercase;
   letter-spacing: 10px;
-  color: green;
+  color: var(--titleColor);
   padding-top: 80px;
 }
 .subtitle {
@@ -12,7 +12,6 @@
 }
 
 .inventory__item {
-  border-top: 1px solid lightgray;
   padding: 10px 0;
   padding-bottom: 15px;
   width: 350px;
@@ -20,22 +19,22 @@
 }
 
 .inventory__nav {
-  background: lightgray;
-  padding: 20px;
+  background: var(--navColor);
+  padding: 10px;
   position: fixed;
   width: 100%;
   z-index: 3;
 }
 
 nav ul li a {
-  color: black;
+  color: var(--whiteOrange);
   text-decoration: none;
 }
 
 .nav__active {
   border-bottom: 2px solid red;
   padding-bottom: 3px;
-  color: green;
+  color: var(--titleColor);
 }
 
 nav ul {
@@ -46,6 +45,16 @@ nav ul {
 
 nav ul li {
   margin-right: 30px;
+}
+
+nav ul li img{
+  margin-top: 5px;
+  height: 15px;
+  filter: invert(98%) sepia(4%) saturate(2110%) hue-rotate(341deg) brightness(96%) contrast(93%);
+}
+
+nav ul li img:hover {
+  cursor: pointer;
 }
 
 .inventory {
@@ -84,6 +93,10 @@ nav ul li {
   padding-top: 10px;
 }
 
+.inventoryForm__form {
+  padding: 10px;
+}
+
 .inventoryForm__container {
   display: flex;
   flex-direction: column;
@@ -101,13 +114,26 @@ nav ul li {
 .inventoryForm__input {
   display: flex;
   width: 100%;
+  height: 35px;
+  margin-bottom: 10px;
+  justify-content: space-between;
 }
 
 .inventoryForm__input label {
   margin-right: 5px;
 }
+.inventoryForm__input input {
+  width: 350px;
+  padding: 5px;
+}
+.inventoryForm__btn {
+  height: 35px;
+    padding: 5px;
+    width: 100%;
+}
 
 .inventory__summary {
+  padding: 10px;
   width: 500px;
   margin: 0 auto;
 }
@@ -115,5 +141,68 @@ nav ul li {
 .inventory__card img {
   height: 300px;
   object-fit: cover;
+  width: 100%;
+}
+
+
+.login {
+  border: 1px solid black;
+  width: 500px;
+    margin: auto;
+    padding: 10px;
+}
+
+.inventoryLogin__input {
+  display: flex;
+  height: 35px;
+  margin: auto;
+  margin-bottom: 10px;
+  justify-content: space-between;
+}
+
+.inventoryLogin__input input {
+  width: 350px;
+  padding: 5px;
+}
+
+.inventoryLogin__btn {
+  margin-top: 20px;
+  height: 35px;
+  width: 100%;
+}
+
+.inventory__changeCount {
+  margin-top: 30px;
+}
+
+.inventorySummary__form {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin: auto;
+  justify-content: center;
+}
+
+.inventorySummary__btn {
+  width: 100px;
+  display: flex;
+  justify-content: space-between;
+  display: inline-flex;
+}
+
+.inventorySummary__btn p {
+  margin-right: 5px;
+}
+
+.inventorySummaryBtn__icon {
+  height: 15px;
+}
+
+.inventorySummaryBtn__icon:hover {
+  cursor: pointer;
+}
+.inventorySummary__submit {
+  display: block;
+  height: 35px;
   width: 100%;
 }
