@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {useHistory} from 'react-router-dom'
 
-function InventoryLogin({user, setLogged, logged}) {
+function InventoryLogin({user, setLogged, logged, setAdmin, setName}) {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState(false)
@@ -16,6 +16,12 @@ function InventoryLogin({user, setLogged, logged}) {
     for(let i =0 ; i < user.users.length ; i++){
       // check is username and password is correct
       if(username === user.users[i].username && password === user.users[i].password){
+        setAdmin(false)
+        if(user.users[i].type === 'admin') {
+          console.log('im admin')
+          setAdmin(true)
+        }
+        setName(user.users[i].username)
         setLogged(true)
         history.push('/home')
       } else {

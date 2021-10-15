@@ -3,13 +3,15 @@ import InventoryUserList from './InventoryUserList'
 function InventoryUser({user}) {
   
   return (
-    <div>
-      <h2>User List</h2>
-      {user.users.map((user)=> {
-        return(
-          <InventoryUserList user={user} />
-        )
-      })}
+    <div className="inventory__user">
+      <h2 className="subtitle">User List</h2>
+      <div className="inventoryUser__list">
+        {user.users.map((user)=> {
+          return(
+            <InventoryUserList user={user} />
+          )
+        })}
+      </div>
     </div>
   )
 }

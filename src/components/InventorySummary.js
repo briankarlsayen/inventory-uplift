@@ -2,13 +2,14 @@ import React, {useState, useEffect} from 'react'
 import styles from './styling/Summary.module.css'
 import InventoryCard from './InventoryCard'
 import {useParams} from 'react-router-dom'
-import MinusIcon from './icons/minus-icon.svg'
-import AddIcon from './icons/plus-icon.svg'
+import { useHistory } from 'react-router'
+import InventoryChangeCount from './InventoryChangeCount'
 
-function InventorySummary({item, setItem, id, allItem}) {
+
+function InventorySummary({item, setItem, id, allItem, admin, logged}) {
   const [newCount, setNewCount] = useState(item.count)
   const _id = useParams()
-
+  const history = useHistory()
   let itemCount;
   const itemCol = ["inventory__summary"];
   if(itemCount <= 2){
@@ -34,39 +35,23 @@ function InventorySummary({item, setItem, id, allItem}) {
     setItem(newAllItems)
   }
 
-  const lessButton= ()=> {
-    let lessCount = newCount;
-    setNewCount(lessCount -=1)
-   //console.log(itemCount)
+  const checkLogged = () => {
+    if(!logged){
+      history.push('/login')
+    }
   }
-  const addButton = ()=> {
-    let addCount = newCount;
-    setNewCount(addCount+=1)
-    console.log(addCount)
-  }
-  
+
   return (
-    <div>
+    <div className="inventory__summary">
       <li className={itemCol.join(' ')}>
         {item.available && 
           <p className="inventory__item">{item.title}</p>
         }
         <InventoryCard item={item} />
-        <div className="inventory__changeCount">
-          <h4>Available Stock :</h4>
-          <form className="inventorySummary__form" onSubmit={e => changeCount(e)}>
-            <div className="inventorySummary__btn">
-              <p onClick={lessButton}>
-                <img className="inventorySummaryBtn__icon" src={MinusIcon} />
-              </p>
-              <p>{newCount}</p>
-              <p onClick={addButton}>
-                <img className="inventorySummaryBtn__icon" src={AddIcon} />
-              </p>
-            </div>
-            <input className="inventorySummary__submit" type="submit" />
-          </form>
-        </div>
+        {admin ?
+          <InventoryChangeCount setNewCount={setNewCount} newCount={newCount} changeCount={changeCount} /> :
+          <button onClick={checkLogged} className="addCart__btn">Add to cart</button>
+        }
       </li>
       
     </div>

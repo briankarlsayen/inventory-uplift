@@ -26,9 +26,27 @@
   z-index: 3;
 }
 
+.inventoryNav__admin {
+  display: flex;
+  flex: 1 1;
+  flex-direction: row-reverse;
+}
+
 nav ul li a {
   color: var(--whiteOrange);
   text-decoration: none;
+}
+
+.inventory__nav ul p {
+  margin-right: 30px;
+}
+
+.inventory__nav ul p:last-child {
+  margin-right: 0;
+}
+
+.inventory__nav ul p:hover {
+  cursor: pointer;
 }
 
 .nav__active {
@@ -41,16 +59,18 @@ nav ul {
   display: flex;
   flex-direction: row;
   padding: 0 8em;
+  color: var(--whiteOrange);
 }
 
 nav ul li {
   margin-right: 30px;
 }
 
-nav ul li img{
+nav ul li img {
   margin-top: 5px;
   height: 15px;
-  filter: invert(98%) sepia(4%) saturate(2110%) hue-rotate(341deg) brightness(96%) contrast(93%);
+  filter: invert(98%) sepia(4%) saturate(2110%) hue-rotate(341deg)
+    brightness(96%) contrast(93%);
 }
 
 nav ul li img:hover {
@@ -89,11 +109,11 @@ nav ul li img:hover {
 .inventory__form {
   width: 500px;
   margin: auto;
-  border: 1px solid black;
   padding-top: 10px;
 }
 
 .inventoryForm__form {
+  border: 1px solid black;
   padding: 10px;
 }
 
@@ -128,8 +148,8 @@ nav ul li img:hover {
 }
 .inventoryForm__btn {
   height: 35px;
-    padding: 5px;
-    width: 100%;
+  padding: 5px;
+  width: 100%;
 }
 
 .inventory__summary {
@@ -143,13 +163,16 @@ nav ul li img:hover {
   object-fit: cover;
   width: 100%;
 }
-
+.inventory__card p {
+  font-size: 16px;
+}
 
 .login {
   border: 1px solid black;
   width: 500px;
-    margin: auto;
-    padding: 10px;
+  margin: auto;
+  padding: 10px;
+  margin-top: 50px;
 }
 
 .inventoryLogin__input {
@@ -205,4 +228,51 @@ nav ul li img:hover {
   display: block;
   height: 35px;
   width: 100%;
+}
+
+.addCart__btn {
+  margin-top: 20px;
+  height: 35px;
+  width: 100%;
+}
+
+.inventoryUser__list {
+  width: 500px;
+  margin: auto;
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.inventory__user,
+.inventory__checkout {
+  padding-top: 10px;
+}
+
+.inventoryHome__items {
+  display: flex;
+  padding: 0 8em;
+}
+
+.inventoryHome__item {
+  width: 250px;
+  border: 1px solid black;
+  padding: 10px;
+  position: relative;
+  margin: 10px;
+  height: 395px;
+}
+
+.inventoryHomeItem__img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border: 1px solid black;
+}
+
+.inventoryHomeItem__btn {
+  height: 35px;
+  width: 90%;
+  position: absolute;
+  top: 345px;
+  right: 12px;
 }
