@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import InventoryCheckoutItem from './InventoryCheckoutItem'
-import './styling/InventoryCheckout.css'
+import '../styling/InventoryCheckout.css'
 
 function InventoryCheckout() {
   const [checkoutItem, setCheckoutItem] = useState({

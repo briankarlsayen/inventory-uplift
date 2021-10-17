@@ -1,26 +1,28 @@
 import React, {useState} from 'react'
-import { Switch, Route, NavLink } from 'react-router-dom'
-import InventorySidebar from './InventorySidebar.js'
-import InventoryForm from './InventoryForm'
-import InventoryHome from './InventoryHome.js'
-import InventoryButtons from './InventoryButtons.js'
-import InventoryDetails from './InventoryDetails.js'
-import InventoryUser from './InventoryUser'
-import InventoryLogin from './InventoryLogin'
-import CloseIcon from './icons/close-icon.svg'
-import MenuIcon from './icons/menu-icon.svg'
-import InventoryCheckout from './InventoryCheckout'
-import {useHistory} from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
+import InventorySidebar from './Sidebar/InventorySidebar.js'
+import InventoryForm from './AddPage/InventoryForm'
+import InventoryHome from './HomePage/InventoryHome.js'
+import InventoryDetails from './DetailsPage/InventoryDetails.js'
+import InventoryUser from './UserPage/InventoryUser'
+import InventoryLogin from './LoginPage/InventoryLogin'
+import InventoryCheckout from './CheckoutPage/InventoryCheckout'
+import InventorySignUp from './SignupPage/InventorySignUp'
+import InventoryUserList from './UserPage/InventoryUserList'
+import Navbar from './Navbar/Navbar'
+import '../App.css'
+import './styling/Inventory.css'
 
 function InventoryBody() {
   const [toShow, setToShow] = useState(false)
-  const [toggle, setToggle] = useState(false)
   const [logged, setLogged] = useState(false)
   const [checkout, setCheckout] = useState([]);
   const [admin, setAdmin] = useState(false)
   const [name, setName] = useState('')
-  const history = useHistory()
 
+
+  const [toggle, setToggle] = useState(false)
+  
   const [item, setItem] = useState({
     realTitle: '',
     items: [{
@@ -55,25 +57,19 @@ function InventoryBody() {
     }]
   })
 
-  const [ user, setUser ] = useState({
-    users: [
-      {
-        username: 'Sasuke',
-        password: '123456',
-        type: 'user'
-      },
-      {
-        username: 'Ash',
-        password: 'ketchup',
-        type: 'user'
-      },
+  const [newUser, setNewUser] = useState({
+    user: [
       {
         username: 'admin',
-        password: '123456',
-        type: 'admin'
+        name: 'admin',
+        email: 'admin@gmail.com',
+        address: null,
+        company: null,
+        id: 0,
+        phone: null,
+        website: null
       }
-    ]
-  })
+    ]})
 
   const hideItems = () => {
     let hide = {...item}
@@ -92,75 +88,16 @@ function InventoryBody() {
     setToShow(false)
   }
 
-  const checkLogged = () => {
-    if(logged){
-      if(admin){
-        return(
-          <div className="inventoryNav__admin">
-            <p style={{cursor: 'crosshair'}}>Admin</p>
-            <li>
-              <NavLink activeClassName="nav__active" to="/add">Add</NavLink>
-            </li>
-            <li style={{width: '60px'}}>
-              <NavLink activeClassName="nav__active" to="/users">User List</NavLink>
-            </li>
-          </div>
-        )
-      }
-      <p>{name}</p>
-    }
-  }
-
-  const navItems = () => {
-    if(logged) {
-      return(
-        <>
-          <li>
-            <NavLink activeClassName="nav__active" to="/home">Home</NavLink>
-          </li>
-          
-          <li>
-            <NavLink activeClassName="nav__active" to="/checkout/">Checkout</NavLink>
-          </li>
-        </>
-      )
-    }
-  }
-
   return (
-    <div>
-      <nav className="inventory__nav">
-        <ul>
-          <li onClick={()=>setToggle(!toggle)} className="nav__btn">
-            {
-              toggle ?
-              <img src={MenuIcon} /> :
-              <img src={CloseIcon} />
-            }
-          </li>
-            {navItems()}
-            {checkLogged()}
-          <li style={{margin: 0}}>
-            {!logged ?
-              <NavLink style={{float: 'right'}} activeClassName="nav__active" to="/login">Login</NavLink> :
-              <p style={{float: 'right'}} onClick={()=>{
-                setLogged(false)
-                setAdmin(false)
-                history.push('/login')
-              }}>Log Out</p>
-            }
-          </li>
-          
-        </ul>
-      </nav>
-      <div className="margin" style={{paddingBottom: '44px'}}>
-      </div>
+    <div className="inventory__body">
+      <Navbar admin={admin} setAdmin={setAdmin} logged={logged} setLogged={setLogged} toggle={toggle} setToggle={setToggle} />
       <Switch>
         <Route exact path="/add"><InventoryForm item={item} setItem={setItem} /></Route>
-        <Route exact path="/login"><InventoryLogin user={user} logged={logged} setLogged={setLogged} setAdmin={setAdmin} setName={setName} /></Route>
-        <Route exact path="/users"><InventoryUser user={user} /></Route>
+        <Route exact path="/login"><InventoryLogin newUser={newUser} setNewUser={setNewUser} logged={logged} setLogged={setLogged} setAdmin={setAdmin} setName={setName} /></Route>
+        <Route exact path="/users"><InventoryUser user={newUser} /></Route>
         <Route path="/home/:id"><InventoryDetails item={item} setItem={setItem} admin={admin} logged={logged} /></Route>
         <Route path="/checkout"><InventoryCheckout/></Route>
+        <Route path="/signup"><InventorySignUp newUser={newUser} setNewUser={setNewUser} /></Route>
         <Route exact path="/home"><InventoryHome item={item.items} /></Route>
       </Switch>
       <InventorySidebar item={item} toggle={toggle} setToggle={setToggle} />

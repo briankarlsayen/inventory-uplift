@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import styles from './styling/Summary.module.css'
+import styles from '../styling/Summary.module.css'
 import InventoryCard from './InventoryCard'
 import {useParams} from 'react-router-dom'
 import { useHistory } from 'react-router'

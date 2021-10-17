@@ -1,12 +1,8 @@
-import Inventory from "./components/Inventory";
-import TasksProject from "./components/TaskProject/TasksProject";
-import VolumeControl from "./components/VolumeControl/VolumeControl";
+import InventoryBody from "./components/InventoryBody";
 function App() {
   return (
     <div>
-      {/* <TasksProject /> */}
-      <Inventory />
-      {/* <VolumeControl /> */}
+      <InventoryBody />
     </div>
 
   );

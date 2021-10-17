@@ -1,6 +1,6 @@
 import React from 'react'
-import MinusIcon from './icons/minus-icon.svg'
-import AddIcon from './icons/plus-icon.svg'
+import MinusIcon from '../../icons/minus-icon.svg'
+import AddIcon from '../../icons/plus-icon.svg'
 
 function InventoryChangeCount({setNewCount, newCount, changeCount}) {
   const lessButton= ()=> {

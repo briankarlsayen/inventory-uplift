@@ -1,8 +1,8 @@
 import React from 'react'
-import './styling/Sidebar.css'
 import {useHistory} from 'react-router-dom'
 import InventorySidebarItem from './InventorySidebarItem'
-import styles from './styling/Toggle.module.css'
+import styles from '../styling/Toggle.module.css'
+import '../styling/Sidebar.css'
 
 function InventorySidebar({item, toggle}) {
   const history = useHistory()

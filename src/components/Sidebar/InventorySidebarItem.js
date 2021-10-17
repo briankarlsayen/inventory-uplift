@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './styling/SidebarItem.module.css'
+import styles from '../styling/SidebarItem.module.css'
 
 function InventorySidebarItem({item}) {
   let itemCount = item.count;

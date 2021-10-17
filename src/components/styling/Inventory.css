@@ -1,3 +1,8 @@
+.inventory__body {
+  margin-top: 50px;
+  text-align: center;
+}
+
 .inverntory__title {
   font-size: 24px;
   padding-bottom: 20px;
@@ -22,6 +27,8 @@
   background: var(--navColor);
   padding: 10px;
   position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   z-index: 3;
 }
@@ -251,6 +258,7 @@ nav ul li img:hover {
 .inventoryHome__items {
   display: flex;
   padding: 0 8em;
+  flex-wrap: wrap;
 }
 
 .inventoryHome__item {
@@ -275,4 +283,12 @@ nav ul li img:hover {
   position: absolute;
   top: 345px;
   right: 12px;
+}
+
+.inventorySign__btn {
+  text-align: center;
+  color: var(--titleColor);
+  cursor: pointer;
+  width: 200px;
+  margin: 10px auto;
 }
