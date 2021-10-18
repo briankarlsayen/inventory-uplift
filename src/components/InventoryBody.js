@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Switch, Route } from 'react-router-dom'
 import InventorySidebar from './Sidebar/InventorySidebar.js'
 import InventoryForm from './AddPage/InventoryForm'
@@ -9,6 +9,8 @@ import InventoryLogin from './LoginPage/InventoryLogin'
 import InventoryCheckout from './CheckoutPage/InventoryCheckout'
 import InventorySignUp from './SignupPage/InventorySignUp'
 import InventoryUserList from './UserPage/InventoryUserList'
+import axios from 'axios'
+import {randomCount, randomPrice} from './foodParams'
 import Navbar from './Navbar/Navbar'
 import '../App.css'
 import './styling/Inventory.css'
@@ -19,10 +21,33 @@ function InventoryBody() {
   const [checkout, setCheckout] = useState([]);
   const [admin, setAdmin] = useState(false)
   const [name, setName] = useState('')
-
+  const [foodList, setFoodList] = useState([])
+  const [filterList, setFilterList] = useState()
 
   const [toggle, setToggle] = useState(false)
   
+
+  useEffect(()=>{
+    getFood()
+  }, [])
+
+  const getFood = () => {
+    axios.get('https://api.edamam.com/api/food-database/v2/parser?app_id=bde0ddf3&app_key=72b1a45c698dbe7fa574728ac9af4f9b&ingr=chicken')
+    .then((res) => {
+      // const filteredTodos = res.data.hints.filter(
+      //   (food) => food.food.label.toLowerCase().includes(search.toLowerCase())
+      // )
+      // setFood(filteredTodos)
+      const newArr = res.data.hints.map((data, index) => {
+        return {food: data, count: randomCount(), price: randomPrice(), id: index}
+      })
+      setFilterList(newArr)
+      setFoodList(newArr)
+    })
+    .catch((err) => console.log(err))
+  }
+
+
   const [item, setItem] = useState({
     realTitle: '',
     items: [{
@@ -95,10 +120,10 @@ function InventoryBody() {
         <Route exact path="/add"><InventoryForm item={item} setItem={setItem} /></Route>
         <Route exact path="/login"><InventoryLogin newUser={newUser} setNewUser={setNewUser} logged={logged} setLogged={setLogged} setAdmin={setAdmin} setName={setName} /></Route>
         <Route exact path="/users"><InventoryUser user={newUser} /></Route>
-        <Route path="/home/:id"><InventoryDetails item={item} setItem={setItem} admin={admin} logged={logged} /></Route>
+        <Route path="/home/:id"><InventoryDetails item={foodList} setItem={setItem} admin={admin} logged={logged} /></Route>
         <Route path="/checkout"><InventoryCheckout/></Route>
         <Route path="/signup"><InventorySignUp newUser={newUser} setNewUser={setNewUser} /></Route>
-        <Route exact path="/home"><InventoryHome item={item.items} /></Route>
+        <Route exact path="/home"><InventoryHome filterList={filterList} setFilterList={setFilterList} foodList={foodList} setFoodList={setFoodList} /></Route>
       </Switch>
       <InventorySidebar item={item} toggle={toggle} setToggle={setToggle} />
     </div>
