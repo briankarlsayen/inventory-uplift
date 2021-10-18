@@ -56,9 +56,9 @@ function Navbar({admin, logged, setLogged, setAdmin, toggle, setToggle}) {
               <img src={CloseIcon} />
             }
           </li>
-          <li>
+          <li className="nav__logoText">
             <NavLink to="/home">
-              <img src={ShopIcon} alt="logo" />
+              <img className="nav__logo" src={ShopIcon} alt="logo" />
               Chicken House
             </NavLink>
           </li>

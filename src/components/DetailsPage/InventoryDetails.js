@@ -5,10 +5,19 @@ import InventoryNotFound from './InventoryNotFound'
 import InventoryCard from './InventoryCard'
 function InventoryDetails({item, setItem, admin, logged}) {
   const [found, setFound] = useState(false)
+  const [list, setList] = useState()
+
   let params = useParams();
   const singleFood = item.filter(
     (data) => data.id == params.id
   )
+
+  useEffect(()=>{
+    if(item.length !== 0){
+      setList(singleFood)
+      setFound(true)
+    }
+  },[item])
 
   //let singleItem = item.items[id];
   //error on id is greater then length
@@ -20,11 +29,10 @@ function InventoryDetails({item, setItem, admin, logged}) {
   // },[singleItem])
   return (
     <div className="inventory__items">
-      {/* {found ? 
-        <InventorySummary item={singleItem} setItem={setItem} id={id} allItem={item} admin={admin} logged={logged}/> :
-        <InventoryNotFound />
-      } */}
-      {/* <InventoryCard item={singleFood} /> */}
+      <h2 className="subtitle">Details Page</h2>
+      {found &&
+        <InventoryCard item={list[0]} /> 
+      }
     </div>
   )
 }

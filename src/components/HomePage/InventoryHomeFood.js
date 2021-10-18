@@ -5,7 +5,7 @@ function InventoryHomeFood({food}) {
       <p>name: {food.food.food.label}</p>
       <p>stock: {food.count}</p>
       <p>${food.price}</p>
-      <button className="inventoryHomeItem__btn">Add to cart</button>
+      {/* <button className="inventoryHomeItem__btn">Click card to see more</button> */}
     </div>
   )
 }

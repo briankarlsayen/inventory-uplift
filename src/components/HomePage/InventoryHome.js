@@ -1,14 +1,14 @@
 import React, {useEffect, useState} from 'react'
 import InventoryHomeFood from './InventoryHomeFood'
-
+import SearchIcon from '../../icons/search-icon.svg'
 import withLoading from '../../HOC/withLoading'
 import userRestrict from '../../HOC/userRestrict'
 import {randomCount, randomPrice} from '../foodParams'
-
+import {useHistory} from 'react-router-dom'
 
 function InventoryHome({filterList, setFilterList, foodList, setFoodList}) {
   const [search, setSearch] = useState('')
-
+  const history = useHistory()
   useEffect(() => {
     list(foodList)
   }, [search])
@@ -23,7 +23,8 @@ function InventoryHome({filterList, setFilterList, foodList, setFoodList}) {
   }
 
   const clickHandler = (index) => {
-    console.log(filterList[index])
+    let id = filterList[index].id
+    history.push(`/home/${id}`)
   }
 
   const showFoods = () => {
@@ -46,8 +47,10 @@ function InventoryHome({filterList, setFilterList, foodList, setFoodList}) {
   return (
     <div className="inventory__home">
       <h2 className="subtitle">Homepage</h2>
-      <button onClick={getRandom}>Generate</button>
-      <input placeholder="Search food" type="text" value={search} onChange={e => setSearch(e.target.value)} />
+      <div className="inventoryHome__searchBox">
+        <input className="inventoryHome__search" placeholder="Search food" type="text" value={search} onChange={e => setSearch(e.target.value)} />
+        <img className="inventoryHome__icon" src={SearchIcon} alt="search icon" />
+      </div>
       <div className="inventoryHome__items">
         {showFoods()}
       </div>

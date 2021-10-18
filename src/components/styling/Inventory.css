@@ -62,6 +62,17 @@ nav ul li a {
   color: var(--titleColor);
 }
 
+.nav__logoText {
+  position: relative;
+  margin-left: 25px;
+}
+
+.nav__logo {
+  position: absolute;
+  top: -2px;
+  left: -19px;
+}
+
 nav ul {
   display: flex;
   flex-direction: row;
@@ -165,13 +176,39 @@ nav ul li img:hover {
   margin: 0 auto;
 }
 
-.inventory__card img {
+.inventory__card {
+  position: relative;
+  width: 300px;
+  margin: auto;
+  border: 1px solid;
+  padding: 10px;
+  height: 560px;
+}
+
+.inventoryCard__img {
+  border: 1px solid black;
   height: 300px;
   object-fit: cover;
   width: 100%;
 }
+
+.inventoryCard__cart {
+  width: 28px;
+  position: absolute;
+  top: 0;
+  left: 62px;
+}
+
 .inventory__card p {
   font-size: 16px;
+}
+
+.inventoryCard__btn {
+  position: absolute;
+  width: 90%;
+  height: 35px;
+  top: 511px;
+  left: 15px;
 }
 
 .login {
@@ -255,6 +292,24 @@ nav ul li img:hover {
   padding-top: 10px;
 }
 
+.inventoryHome__searchBox {
+  position: relative;
+  margin: auto;
+  width: 500px;
+}
+
+.inventoryHome__search {
+  height: 35px;
+  width: 100%;
+  padding: 5px;
+}
+
+.inventoryHome__icon {
+  position: absolute;
+  top: 4px;
+  right: 8px;
+}
+
 .inventoryHome__items {
   display: flex;
   padding: 0 8em;
@@ -262,12 +317,18 @@ nav ul li img:hover {
 }
 
 .inventoryHome__item {
+  border-radius: 5px;
   width: 250px;
   border: 1px solid black;
   padding: 10px;
   position: relative;
   margin: 10px;
   height: 395px;
+}
+
+.inventoryHome__item:hover {
+  background-color: var(--whiteOrange);
+  cursor: pointer;
 }
 
 .inventoryHomeItem__img {
