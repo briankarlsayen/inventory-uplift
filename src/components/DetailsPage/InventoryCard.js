@@ -1,7 +1,18 @@
-import React from 'react'
+import React, {useState} from 'react'
 import CartIcon from '../../icons/cart-icon.svg'
-function InventoryCard({item}) {
-  console.log(item)
+import {useDispatch} from 'react-redux'
+import {cartChange} from '../../redux/reducers/user-reducer';
+
+function InventoryCard({item, addToCart}) {
+  const [addCart, setAddCart] = useState(false)
+  const dispatch = useDispatch()
+  const clickHandler = () => {
+
+      console.log('add')
+      dispatch(cartChange(item))
+    
+  }
+
   return (
     <div className="inventory__card">
       <img className="inventoryCard__img" src={item.food.food.image}/>
@@ -13,7 +24,7 @@ function InventoryCard({item}) {
       <p>Calories: {item.food.food.nutrients.ENERC_KCAL}kcal</p>
       <p>Fat: {item.food.food.nutrients.FAT}g</p>
       <p>Protein: {item.food.food.nutrients.PROCNT}g</p>
-      <button className="inventoryCard__btn">
+      <button className="inventoryCard__btn"  onClick={clickHandler}>
       <img className="inventoryCard__cart" src={CartIcon} alt="shopping cart icon" />
       Add to Cart
       </button>

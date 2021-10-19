@@ -3,11 +3,15 @@ import {useParams} from 'react-router-dom'
 import InventorySummary from './InventorySummary';
 import InventoryNotFound from './InventoryNotFound'
 import InventoryCard from './InventoryCard'
+import {useDispatch} from 'react-redux'
+import {cartChange} from '../../redux/reducers/user-reducer';
+
 function InventoryDetails({item, setItem, admin, logged}) {
   const [found, setFound] = useState(false)
   const [list, setList] = useState()
-
+  const dispatch = useDispatch()
   let params = useParams();
+
   const singleFood = item.filter(
     (data) => data.id == params.id
   )
@@ -18,6 +22,11 @@ function InventoryDetails({item, setItem, admin, logged}) {
       setFound(true)
     }
   },[item])
+  
+  const addToCart = () => {
+    //console.log('click')
+    dispatch(cartChange(list[0]))
+  }
 
   //let singleItem = item.items[id];
   //error on id is greater then length
@@ -31,7 +40,7 @@ function InventoryDetails({item, setItem, admin, logged}) {
     <div className="inventory__items">
       <h2 className="subtitle">Details Page</h2>
       {found &&
-        <InventoryCard item={list[0]} /> 
+        <InventoryCard item={list[0]} addToCart={addToCart}/> 
       }
     </div>
   )

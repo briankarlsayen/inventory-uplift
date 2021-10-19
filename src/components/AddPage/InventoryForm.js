@@ -11,6 +11,16 @@ function InventoryForm({setItem, item}) {
   const addItem = (e) => {
     e.preventDefault()
     let newItem = {...item}
+    // const toAdd ={
+    //   title: itemTitle,
+    //   available: true,
+    //   count: Number(itemCount),
+    //   price: itemPrice,
+    //   description: itemDescription,
+    //   type: itemType,
+    //   // id: id++
+    //   image: itemImage
+    
     const toAdd ={
       title: itemTitle,
       available: true,
@@ -21,17 +31,18 @@ function InventoryForm({setItem, item}) {
       // id: id++
       image: itemImage
     }
-    const resetItemInput = () => {
-      setItemTitle('')
-      setItemCount(0)
-      setItemPrice(0)
-      setItemDescription('')
-      setItemType('')
-      setItemImage('')
-    }
-    newItem.items.push(toAdd)
-    setItem(newItem)
-    resetItemInput()
+    // const resetItemInput = () => {
+    //   setItemTitle('')
+    //   setItemCount(0)
+    //   setItemPrice(0)
+    //   setItemDescription('')
+    //   setItemType('')
+    //   setItemImage('')
+    // }
+    // newItem.items.push(toAdd)
+    // setItem(newItem)
+    // resetItemInput()
+    console.log(newItem)
   }
 
   

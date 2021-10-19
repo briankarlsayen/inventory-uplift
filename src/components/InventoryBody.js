@@ -39,7 +39,7 @@ function InventoryBody() {
       // )
       // setFood(filteredTodos)
       const newArr = res.data.hints.map((data, index) => {
-        return {food: data, count: randomCount(), price: randomPrice(), id: index}
+        return {food: data, count: randomCount(), price: randomPrice(), id: index, inCart: false}
       })
       setFilterList(newArr)
       setFoodList(newArr)
@@ -96,28 +96,28 @@ function InventoryBody() {
       }
     ]})
 
-  const hideItems = () => {
-    let hide = {...item}
-    hide.items.map((val) => (
-      val.available = false
-    ))
-    setItem(hide)
-    setToShow(true)
-  }
-  const showItems = () => {
-    let show = {...item}
-    show.items.map((val) => (
-      val.available = true
-    ))
-    setItem(show)
-    setToShow(false)
-  }
+  // const hideItems = () => {
+  //   let hide = {...item}
+  //   hide.items.map((val) => (
+  //     val.available = false
+  //   ))
+  //   setItem(hide)
+  //   setToShow(true)
+  // }
+  // const showItems = () => {
+  //   let show = {...item}
+  //   show.items.map((val) => (
+  //     val.available = true
+  //   ))
+  //   setItem(show)
+  //   setToShow(false)
+  // }
 
   return (
     <div className="inventory__body">
       <Navbar admin={admin} setAdmin={setAdmin} logged={logged} setLogged={setLogged} toggle={toggle} setToggle={setToggle} />
       <Switch>
-        <Route exact path="/add"><InventoryForm item={item} setItem={setItem} /></Route>
+        <Route exact path="/add"><InventoryForm item={foodList} setItem={setFoodList} /></Route>
         <Route exact path="/login"><InventoryLogin newUser={newUser} setNewUser={setNewUser} logged={logged} setLogged={setLogged} setAdmin={setAdmin} setName={setName} /></Route>
         <Route exact path="/users"><InventoryUser user={newUser} /></Route>
         <Route path="/home/:id"><InventoryDetails item={foodList} setItem={setItem} admin={admin} logged={logged} /></Route>
@@ -125,7 +125,7 @@ function InventoryBody() {
         <Route path="/signup"><InventorySignUp newUser={newUser} setNewUser={setNewUser} /></Route>
         <Route exact path="/home"><InventoryHome filterList={filterList} setFilterList={setFilterList} foodList={foodList} setFoodList={setFoodList} /></Route>
       </Switch>
-      <InventorySidebar item={item} toggle={toggle} setToggle={setToggle} />
+      {/* <InventorySidebar item={item} toggle={toggle} setToggle={setToggle} /> */}
     </div>
   )
 }
