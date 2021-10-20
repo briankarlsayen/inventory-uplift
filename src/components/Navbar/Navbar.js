@@ -10,7 +10,7 @@ import {useLocation} from 'react-router-dom'
 function Navbar({admin, logged, setLogged, setAdmin, toggle, setToggle}) {
   const location = useLocation()
   const history = useHistory()
-  const globalUser = useSelector(state => state.user)
+  const globalUser = useSelector(state => state.users)
 
   const checkLogged = () => {
     if(logged){

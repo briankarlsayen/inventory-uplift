@@ -1,7 +1,8 @@
 import React from 'react'
 
-function InventoryCheckoutItem({item}) {
+function InventoryCheckoutItem({item, removeItem}) {
   const totalPrice = item.cart.count * item.cart.price
+  console.log(item)
   return (
     <div className="inventoryCheckout__item">
       <input className="inventoryCheckoutItem__checkBox" type="checkbox" />
@@ -13,7 +14,7 @@ function InventoryCheckoutItem({item}) {
           <p>P {totalPrice}.00</p>
         </div>
       </div>
-      <button>Remove</button>
+      <button onClick={()=>removeItem(item.id)}>Remove</button>
     </div>
   )
 }

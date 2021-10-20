@@ -4,7 +4,7 @@ import InventorySummary from './InventorySummary';
 import InventoryNotFound from './InventoryNotFound'
 import InventoryCard from './InventoryCard'
 import {useDispatch} from 'react-redux'
-import {cartChange} from '../../redux/reducers/user-reducer';
+import {addToCart} from '../../redux/reducers/cart-reducer';
 
 function InventoryDetails({item, setItem, admin, logged}) {
   const [found, setFound] = useState(false)
@@ -25,7 +25,7 @@ function InventoryDetails({item, setItem, admin, logged}) {
   
   const addToCart = () => {
     //console.log('click')
-    dispatch(cartChange(list[0]))
+    dispatch(addToCart(list[0]))
   }
 
   //let singleItem = item.items[id];

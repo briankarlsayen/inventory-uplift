@@ -39,10 +39,8 @@ function InventoryLogin({newUser, setNewUser, setLogged, logged, setAdmin, setNa
     for(let i =0 ; i < 10 ; i++){
       // check is username and password is correct      
       if(account.username === newUser[i].username){
-        console.log('same')
         setAdmin(false)
         if(newUser[i].id === 0) {
-          console.log('im admin')
           setAdmin(true)
         }
         //setNewUsers(newUsers[i])

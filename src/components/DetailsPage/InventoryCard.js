@@ -1,16 +1,13 @@
 import React, {useState} from 'react'
 import CartIcon from '../../icons/cart-icon.svg'
 import {useDispatch} from 'react-redux'
-import {cartChange} from '../../redux/reducers/user-reducer';
+import {addCart} from '../../redux/reducers/cart-reducer';
 
 function InventoryCard({item, addToCart}) {
-  const [addCart, setAddCart] = useState(false)
   const dispatch = useDispatch()
   const clickHandler = () => {
-
-      console.log('add')
-      dispatch(cartChange(item))
-    
+      dispatch(addCart(item))
+      console.log(item)
   }
 
   return (

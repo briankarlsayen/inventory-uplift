@@ -5,8 +5,12 @@ import withLoading from '../../HOC/withLoading'
 import userRestrict from '../../HOC/userRestrict'
 import {randomCount, randomPrice} from '../foodParams'
 import {useHistory} from 'react-router-dom'
+import {useSelector} from 'react-redux'
 
 function InventoryHome({filterList, setFilterList, foodList, setFoodList}) {
+  const all = useSelector(state => state.user)
+  console.log(all)
+  
   const [search, setSearch] = useState('')
   const history = useHistory()
   useEffect(() => {
@@ -31,8 +35,8 @@ function InventoryHome({filterList, setFilterList, foodList, setFoodList}) {
     return(
       <>
       {filterList && filterList.map((data, index) => (
-        <div onClick={()=> clickHandler(index)}>
-          <InventoryHomeFood key={index} food={data} />
+        <div  key={data.food.food.label} onClick={()=> clickHandler(index)}>
+          <InventoryHomeFood food={data} />
         </div>
       ))
       } 
