@@ -8,6 +8,10 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.23.0",
+    "crypto-js": "^4.1.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.11",
     "newproject": "https://github.com/briankarlsayen/inventory-uplift.git",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -21,6 +25,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "dev": "nodemon server.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
