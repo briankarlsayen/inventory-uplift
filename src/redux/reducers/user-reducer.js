@@ -6,7 +6,8 @@ export const userSlice = createSlice({
       id: 0,
       name: '',
       username: '',
-      cart: []
+      cart: [],
+      logged: false
   },
   reducers: {
     nameChange: (state, action) => {
@@ -14,9 +15,12 @@ export const userSlice = createSlice({
     },
     userNameChange: (state, action) => {
       state.username = action.payload
+    },
+    userState: (state, action) => {
+      state.logged = action.payload
     }
   }
 })
 
-export const {nameChange, userNameChange} = userSlice.actions;
+export const {nameChange, userNameChange, userState} = userSlice.actions;
 export default userSlice.reducer

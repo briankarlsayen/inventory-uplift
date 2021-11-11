@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
 import {Redirect} from 'react-router-dom'
 const userRestrict = WrapperComponent => props => {
-  const name = useSelector(state => state.user.name)
+  const logged = useSelector(state => state.users.logged)
   return(
     <div>
-      {(name ==='admin') ? <WrapperComponent  /> :
+      {(logged) ? <WrapperComponent  /> :
       <Redirect to="login" /> }
     </div>
   )

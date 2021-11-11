@@ -2,8 +2,11 @@ import React, {useState, useEffect} from 'react'
 import {useHistory} from 'react-router-dom'
 import axios from 'axios'
 import {useDispatch} from 'react-redux'
-
+import LockIcon from '../../icons/lock-icon.svg'
+import UserIcon from '../../icons/user-icon.svg'
+import SignLogo from '../../icons/sign-logo.svg'
 import {nameChange} from '../../redux/reducers/user-reducer';
+import {userState} from '../../redux/reducers/user-reducer';
 
 function InventoryLogin({newUser, setNewUser, setLogged, logged, setAdmin, setName}) {
   const [account, setAccount] = useState({
@@ -46,8 +49,8 @@ function InventoryLogin({newUser, setNewUser, setLogged, logged, setAdmin, setNa
         //setNewUsers(newUsers[i])
         setName(newUser[i].username)
         setLogged(true)
-        alert(`Hi ${newUser[i].name}`)
         dispatch(nameChange(newUser[i].name))
+        dispatch(userState(true))
         history.push('/home')
       } else {
         setAccount({error: true})
@@ -88,29 +91,30 @@ function InventoryLogin({newUser, setNewUser, setLogged, logged, setAdmin, setNa
 
   return (
     <div className="login">
-      <h2 className="subtitle">Login Form</h2>
+      <img src={SignLogo} alt="logo" />
+      <h2 className="subtitle">Sign In</h2>
       {account.error && 
         <h2 className="errorMsg">Wrong username or password</h2>
       }
         <form autoComplete="off"
         onSubmit={handleSubmit} >
         <div className="inventoryLogin__input">
-          <label>Username: </label>
+          <label>Username</label>
+          <img src={UserIcon} alt="user icon" />
           <input
             name="username"
             required
             autoComplete="off"
-            placeholder="Username"
             value={account.username} onChange={changeHandler}
           />
         </div>
         <div className="inventoryLogin__input">
-        <label>Password: </label>
+          <label>Password</label>
+          <img src={LockIcon} alt="lock icon" />
           <input
             name="password"
             required
             autoComplete="off"
-            placeholder="Password"
             type="password"
             value={account.password} onChange={changeHandler}
           />

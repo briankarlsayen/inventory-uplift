@@ -4,6 +4,7 @@ import '../styling/InventoryCheckout.css'
 import {useSelector} from 'react-redux'
 import {useDispatch} from 'react-redux'
 import {deleteCart} from '../../redux/reducers/cart-reducer';
+import userRestrict from "../../HOC/userRestrict";
 
 function InventoryCheckout() {
   const cart = useSelector(state => state.cart)
@@ -25,4 +26,4 @@ function InventoryCheckout() {
   )
 }
 
-export default InventoryCheckout
+export default userRestrict(InventoryCheckout)

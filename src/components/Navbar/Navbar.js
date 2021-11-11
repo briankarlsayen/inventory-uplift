@@ -6,11 +6,16 @@ import MenuIcon from '../../icons/menu-icon.svg'
 import {useHistory} from 'react-router-dom'
 import {useSelector} from 'react-redux'
 import {useLocation} from 'react-router-dom'
+import {nameChange} from '../../redux/reducers/user-reducer';
+import {userState} from '../../redux/reducers/user-reducer';
+import {useDispatch} from 'react-redux'
 
 function Navbar({admin, logged, setLogged, setAdmin, toggle, setToggle}) {
+  const dispatch = useDispatch()
   const location = useLocation()
   const history = useHistory()
   const globalUser = useSelector(state => state.users)
+  console.log(globalUser)
 
   const checkLogged = () => {
     if(logged){
@@ -73,6 +78,8 @@ function Navbar({admin, logged, setLogged, setAdmin, toggle, setToggle}) {
                 setLogged(false)
                 setAdmin(false)
                 history.push('/login')
+                dispatch(nameChange(''))
+                dispatch(userState(false))
               }}>Log Out</p>
             }
           </li>          

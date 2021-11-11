@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import userRestrict from "../../HOC/userRestrict";
 
 function InventoryForm({setItem, item}) {
   const [itemTitle, setItemTitle] = useState('')
@@ -114,4 +115,4 @@ function InventoryForm({setItem, item}) {
   )
 }
 
-export default InventoryForm
+export default userRestrict(InventoryForm)

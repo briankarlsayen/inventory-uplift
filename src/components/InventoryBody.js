@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 import InventorySidebar from './Sidebar/InventorySidebar.js'
 import InventoryForm from './AddPage/InventoryForm'
 import InventoryHome from './HomePage/InventoryHome.js'
@@ -124,6 +124,7 @@ function InventoryBody() {
         <Route path="/checkout"><InventoryCheckout/></Route>
         <Route path="/signup"><InventorySignUp newUser={newUser} setNewUser={setNewUser} /></Route>
         <Route exact path="/home"><InventoryHome filterList={filterList} setFilterList={setFilterList} foodList={foodList} setFoodList={setFoodList} /></Route>
+        <Route render={() => <Redirect to="/home" />} />
       </Switch>
       {/* <InventorySidebar item={item} toggle={toggle} setToggle={setToggle} /> */}
     </div>

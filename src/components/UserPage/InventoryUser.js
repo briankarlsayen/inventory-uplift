@@ -16,4 +16,4 @@ function InventoryUser({user}) {
   )
 }
 
-export default InventoryUser
+export default userRestrict(InventoryUser)
