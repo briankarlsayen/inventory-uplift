@@ -1,3 +1,8 @@
+.inventory__body {
+  margin-top: 50px;
+  text-align: center;
+}
+
 .inverntory__title {
   font-size: 24px;
   padding-bottom: 20px;
@@ -22,13 +27,33 @@
   background: var(--navColor);
   padding: 10px;
   position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   z-index: 3;
+}
+
+.inventoryNav__admin {
+  display: flex;
+  flex: 1 1;
+  flex-direction: row-reverse;
 }
 
 nav ul li a {
   color: var(--whiteOrange);
   text-decoration: none;
+}
+
+.inventory__nav ul p {
+  margin-right: 30px;
+}
+
+.inventory__nav ul p:last-child {
+  margin-right: 0;
+}
+
+.inventory__nav ul p:hover {
+  cursor: pointer;
 }
 
 .nav__active {
@@ -37,20 +62,33 @@ nav ul li a {
   color: var(--titleColor);
 }
 
+.nav__logoText {
+  position: relative;
+  margin-left: 25px;
+}
+
+.nav__logo {
+  position: absolute;
+  top: -2px;
+  left: -19px;
+}
+
 nav ul {
   display: flex;
   flex-direction: row;
   padding: 0 8em;
+  color: var(--whiteOrange);
 }
 
 nav ul li {
   margin-right: 30px;
 }
 
-nav ul li img{
+nav ul li img {
   margin-top: 5px;
   height: 15px;
-  filter: invert(98%) sepia(4%) saturate(2110%) hue-rotate(341deg) brightness(96%) contrast(93%);
+  filter: invert(98%) sepia(4%) saturate(2110%) hue-rotate(341deg)
+    brightness(96%) contrast(93%);
 }
 
 nav ul li img:hover {
@@ -89,11 +127,11 @@ nav ul li img:hover {
 .inventory__form {
   width: 500px;
   margin: auto;
-  border: 1px solid black;
   padding-top: 10px;
 }
 
 .inventoryForm__form {
+  border: 1px solid black;
   padding: 10px;
 }
 
@@ -128,8 +166,8 @@ nav ul li img:hover {
 }
 .inventoryForm__btn {
   height: 35px;
-    padding: 5px;
-    width: 100%;
+  padding: 5px;
+  width: 100%;
 }
 
 .inventory__summary {
@@ -138,18 +176,47 @@ nav ul li img:hover {
   margin: 0 auto;
 }
 
-.inventory__card img {
+.inventory__card {
+  position: relative;
+  width: 300px;
+  margin: auto;
+  border: 1px solid;
+  padding: 10px;
+  height: 560px;
+}
+
+.inventoryCard__img {
+  border: 1px solid black;
   height: 300px;
   object-fit: cover;
   width: 100%;
 }
 
+.inventoryCard__cart {
+  width: 28px;
+  position: absolute;
+  top: 0;
+  left: 62px;
+}
+
+.inventory__card p {
+  font-size: 16px;
+}
+
+.inventoryCard__btn {
+  position: absolute;
+  width: 90%;
+  height: 35px;
+  top: 511px;
+  left: 15px;
+}
 
 .login {
   border: 1px solid black;
   width: 500px;
-    margin: auto;
-    padding: 10px;
+  margin: auto;
+  padding: 10px;
+  margin-top: 50px;
 }
 
 .inventoryLogin__input {
@@ -205,4 +272,31 @@ nav ul li img:hover {
   display: block;
   height: 35px;
   width: 100%;
+}
+
+.addCart__btn {
+  margin-top: 20px;
+  height: 35px;
+  width: 100%;
+}
+
+.inventoryUser__list {
+  width: 500px;
+  margin: auto;
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.inventory__user,
+.inventory__checkout {
+  padding-top: 10px;
+}
+
+
+.inventorySign__btn {
+  text-align: center;
+  color: var(--titleColor);
+  cursor: pointer;
+  width: 200px;
+  margin: 10px auto;
 }

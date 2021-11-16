@@ -1,0 +1,38 @@
+.inventoryCheckout__items {
+  width: 500px;
+  margin: auto;
+}
+
+.inventoryCheckout__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
+.inventoryCheckoutItem__checkBox {
+  width: 20px;
+  margin-right: 50px;
+}
+
+.inventoryCheckoutItem__right {
+  display: flex;
+  flex: 1;
+  align-items: center;
+}
+
+.inventoryCheckoutItem__image {
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+}
+
+.inventoryCheckoutItem__text {
+  flex: 1;
+}
+
+.checkout__btn {
+  height: 35px;
+  width: 500px;
+  margin-bottom: 20px;
+}
