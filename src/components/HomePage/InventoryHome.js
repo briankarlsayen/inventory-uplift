@@ -12,12 +12,15 @@ import '../styling/InventoryHome.css'
 
 function InventoryHome({filterList, setFilterList, foodList, setFoodList, itemList}) {
   const all = useSelector(state => state.user)
-  
   const [inputText, setInputText] = useState('')
   const [secretText, setSecretText] = useState('')
   const [inputDecText, setInputDecText] = useState('')
   const [showDecText, setShowDecText] = useState('')
-
+  const [selectedItem, setSelectedItem] = useState({
+      name: 'Divine Rapier',
+      price: '6200',
+      description: '+250 damage, drops upon death'
+    })
 
   const [search, setSearch] = useState('')
   const history = useHistory()
@@ -33,18 +36,27 @@ function InventoryHome({filterList, setFilterList, foodList, setFoodList, itemLi
     setFilterList(filtered)
   }
 
-  const clickHandler = (index) => {
-    let id = filterList[index].id
-    history.push(`/home/${id}`)
+  const selectItemHandler = (data) => {
+    setSelectedItem({
+      name: data.name,
+      price: data.buy_price,
+      description: data.function
+    })
   }
 
-  //edit this!!
+  const blurImage = (data) => {
+    if(data.name === selectedItem.name) return 'blur__image'
+    return 'hover__image'
+  }
+
+  
+  //apply tooltip
   const showFoods = () => {
     return(
       <>
       {filterList && filterList.map((data, index) => (
-        <div className="inventoryHomeItem__container" key={data.name} onClick={()=> clickHandler(index)}>
-          <img className="inventoryHomeItem__img" src={data.image} alt={data.name} />
+        <div className="inventoryHomeItem__container" key={data.name} onClick={()=> selectItemHandler(data)}>
+          <img className={`inventoryHomeItem__img ${blurImage(data)}`} src={data.image} alt={data.name} />
         </div>
       ))
       } 
@@ -74,27 +86,16 @@ function InventoryHome({filterList, setFilterList, foodList, setFoodList, itemLi
 
   return (
     <div className="inventory__home">
-      {/* <form onSubmit={submitHandler} className="generator">
-        <input type="text" value={inputText} onChange={e=> setInputText(e.target.value)} />
-        <input type="submit" />
-        <p>{secretText}</p>
-      </form>
-      <form onSubmit={decriptHandler} className="generator">
-        <input type="text" value={inputDecText} onChange={e=> setInputDecText(e.target.value)} />
-        <input type="submit" />
-        <p>{showDecText}</p>
-      </form> */}
       <div className="inventoryHome__searchBox">
         <input className="inventoryHome__search" placeholder="Search food" type="text" value={search} onChange={e => setSearch(e.target.value)} />
         <img className="inventoryHome__icon" src={SearchIcon} alt="search icon" />
       </div>
       <div className="inventoryHome__items">
         <div className="inventoryHome__left">
-          <h4>Description</h4>
-          <p>Divine Rapier</p>
-          <p>+250 damage, drops upon death</p>
-          <p>6200 gold</p>
-          <button>Buy</button>
+          <p className="item-name">{selectedItem.name}</p>
+          <p className="item-desc">{selectedItem.description}</p>
+          <p className="item-price">{selectedItem.price} gold</p>
+          <button className="inventoryHome__buy">Buy</button>
         </div>
         <div className="inventoryHome__right">
           <h4>Buy item</h4>

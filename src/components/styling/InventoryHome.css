@@ -1,5 +1,6 @@
 .inventory__home {
   padding: 0 16em;
+  height: 90vh;
 }
 
 .inventoryHome__searchBox {
@@ -23,14 +24,43 @@
 .inventoryHome__items {
   display: flex;
   flex-wrap: wrap;
+  height: 100%;
 }
 
 .inventoryHome__left {
+  margin: auto;
   width: 450px;
-  height: 800px;
   border: 1px solid black;
+  padding: 20px;
+  border-radius: 5px;
 }
+
+.item-name {
+  font-size: 2em;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.item-desc {
+  font-size: 1.2em;
+}
+
+.item-price {
+  padding: 0.5em 0;
+  margin-bottom: 1em;
+}
+
+.inventoryHome__buy {
+  height: 40px;
+  width: 100px;
+  margin-left: 10px;
+  font-size: 1.5em;
+  background-color: yellow;
+  border-radius: 5px;
+}
+
 .inventoryHome__right {
+  margin: auto;
   flex: 1;
   padding: 8em;
 }
@@ -52,6 +82,15 @@
 .inventoryHomeItem__img {
   height: 35px;
   object-fit: cover;
+}
+
+.hover__image:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+.blur__image {
+  filter: brightness(50%);
 }
 
 .inventoryHomeItem__btn {
