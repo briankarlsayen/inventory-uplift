@@ -1,18 +1,24 @@
 .inventory__home {
   padding: 0 16em;
   height: 90vh;
+  position: relative;
 }
 
 .inventoryHome__searchBox {
   position: relative;
-  margin: auto;
-  width: 500px;
+    margin: auto;
+    width: 500px;
+    top: -76px;
+    left: -11px;
 }
 
 .inventoryHome__search {
   height: 35px;
   width: 100%;
-  padding: 5px;
+  padding: 5px 15px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
 }
 
 .inventoryHome__icon {
@@ -25,12 +31,20 @@
   display: flex;
   flex-wrap: wrap;
   height: 100%;
+  background-image: url(lichking-img.png);
+  background-repeat: no-repeat;
 }
 
 .inventoryHome__left {
+  padding-top: 223px;
+  margin-right: 20px;
+}
+
+.inventoryHomeLeft__details {
+  background-color: rgb(23,22,18, 0.7);
+  color: white;
   margin: auto;
   width: 450px;
-  border: 1px solid black;
   padding: 20px;
   border-radius: 5px;
 }
@@ -52,17 +66,24 @@
 
 .inventoryHome__buy {
   height: 40px;
-  width: 100px;
+  width: 400px;
   margin-left: 10px;
   font-size: 1.5em;
-  background-color: yellow;
+  background-color: #f6ff00;
   border-radius: 5px;
 }
 
+.inventoryHome__buy:hover {
+  cursor: pointer;
+  background-color: #c7cf00;
+}
+
 .inventoryHome__right {
+  background: rgb(23,22,18, 0.7);
   margin: auto;
-  flex: 1;
+  flex: 1 1;
   padding: 8em;
+  border-radius: 5px;
 }
 
 .inventoryHome__item {

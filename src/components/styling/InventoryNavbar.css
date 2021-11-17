@@ -1,0 +1,100 @@
+@font-face {
+  font-family: myDrakon;
+  src: url(drakon.ttf);
+}
+
+body {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.logo__container {
+  font-family: myDrakon;
+  font-size: 2em;
+  position: relative;
+  width: 160px;
+  top: -9px;
+  left: 0px
+}
+
+.logo__text1 {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+.logo__text2 {
+  position: absolute;
+  top: 0px;
+  left: 91px;
+}
+
+.inventory__nav {
+  background: #1E2326;
+  padding: 20px 0;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 3;
+}
+
+.inventoryNav__admin {
+  display: flex;
+  flex: 1 1;
+  flex-direction: row-reverse;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.inventory__nav ul p {
+  margin-right: 30px;
+}
+
+.inventory__nav ul p:last-child {
+  margin-right: 0;
+}
+
+.inventory__nav ul p:hover {
+  cursor: pointer;
+}
+
+.nav__active {
+  border-bottom: 2px solid red;
+  padding-bottom: 3px;
+  color: var(--titleColor);
+}
+
+.nav__logoText {
+  position: relative;
+}
+
+.nav__logo {
+  position: absolute;
+  top: -2px;
+  left: -19px;
+}
+
+nav ul {
+  display: flex;
+  flex-direction: row;
+  padding: 0 16em;
+  color: white;
+}
+
+nav ul li {
+  margin-right: 30px;
+}
+
+nav ul li img {
+  margin-top: 5px;
+  height: 15px;
+  filter: invert(98%) sepia(4%) saturate(2110%) hue-rotate(341deg)
+    brightness(96%) contrast(93%);
+}
+
+nav ul li img:hover {
+  cursor: pointer;
+}

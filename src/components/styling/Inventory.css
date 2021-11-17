@@ -1,5 +1,4 @@
 .inventory__body {
-  margin-top: 50px;
   text-align: center;
 }
 
@@ -21,78 +20,6 @@
   padding-bottom: 15px;
   width: 350px;
   margin: 0 auto;
-}
-
-.inventory__nav {
-  background: var(--navColor);
-  padding: 10px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 3;
-}
-
-.inventoryNav__admin {
-  display: flex;
-  flex: 1 1;
-  flex-direction: row-reverse;
-}
-
-nav ul li a {
-  color: var(--whiteOrange);
-  text-decoration: none;
-}
-
-.inventory__nav ul p {
-  margin-right: 30px;
-}
-
-.inventory__nav ul p:last-child {
-  margin-right: 0;
-}
-
-.inventory__nav ul p:hover {
-  cursor: pointer;
-}
-
-.nav__active {
-  border-bottom: 2px solid red;
-  padding-bottom: 3px;
-  color: var(--titleColor);
-}
-
-.nav__logoText {
-  position: relative;
-  margin-left: 25px;
-}
-
-.nav__logo {
-  position: absolute;
-  top: -2px;
-  left: -19px;
-}
-
-nav ul {
-  display: flex;
-  flex-direction: row;
-  padding: 0 8em;
-  color: var(--whiteOrange);
-}
-
-nav ul li {
-  margin-right: 30px;
-}
-
-nav ul li img {
-  margin-top: 5px;
-  height: 15px;
-  filter: invert(98%) sepia(4%) saturate(2110%) hue-rotate(341deg)
-    brightness(96%) contrast(93%);
-}
-
-nav ul li img:hover {
-  cursor: pointer;
 }
 
 .inventory {

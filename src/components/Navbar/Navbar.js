@@ -9,6 +9,7 @@ import {useLocation} from 'react-router-dom'
 import {nameChange} from '../../redux/reducers/user-reducer';
 import {userState} from '../../redux/reducers/user-reducer';
 import {useDispatch} from 'react-redux'
+import '../styling/InventoryNavbar.css'
 
 function Navbar({admin, logged, setLogged, setAdmin, toggle, setToggle}) {
   const dispatch = useDispatch()
@@ -22,12 +23,8 @@ function Navbar({admin, logged, setLogged, setAdmin, toggle, setToggle}) {
       if(admin){
         return(
           <div className="inventoryNav__admin">
-            <p style={{cursor: 'crosshair'}}>Admin</p>
             <li>
               <NavLink activeClassName="nav__active" to="/add">Add</NavLink>
-            </li>
-            <li style={{width: '60px'}}>
-              <NavLink activeClassName="nav__active" to="/users">User List</NavLink>
             </li>
           </div>
         )
@@ -41,7 +38,7 @@ function Navbar({admin, logged, setLogged, setAdmin, toggle, setToggle}) {
       return(
         <>
           <li>
-            <NavLink activeClassName="nav__active" to="/checkout/">Checkout</NavLink>
+            <NavLink activeClassName="nav__active" to="/checkout/">Cart</NavLink>
           </li>
           <li>
             {globalUser.name}
@@ -54,17 +51,20 @@ function Navbar({admin, logged, setLogged, setAdmin, toggle, setToggle}) {
   return (
     <nav className="inventory__nav">
         <ul>
-          <li onClick={()=>setToggle(!toggle)} className="nav__btn">
+          {/* <li onClick={()=>setToggle(!toggle)} className="nav__btn">
             {
               toggle ?
               <img src={MenuIcon} /> :
               <img src={CloseIcon} />
             }
-          </li>
+          </li> */}
           <li className="nav__logoText">
             <NavLink to="/home">
-              <img className="nav__logo" src={ShopIcon} alt="logo" />
-              Chicken House
+              {/* <img className="nav__logo" src={ShopIcon} alt="logo" /> */}
+              <div className="logo__container">
+                <span className="logo__text1">Secret</span>
+                <span className="logo__text2">Shop</span>
+              </div>
             </NavLink>
           </li>
             {navItems()}

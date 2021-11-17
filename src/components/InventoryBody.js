@@ -4,11 +4,9 @@ import InventorySidebar from './Sidebar/InventorySidebar.js'
 import InventoryForm from './AddPage/InventoryForm'
 import InventoryHome from './HomePage/InventoryHome.js'
 import InventoryDetails from './DetailsPage/InventoryDetails.js'
-import InventoryUser from './UserPage/InventoryUser'
 import InventoryLogin from './LoginPage/InventoryLogin'
 import InventoryCheckout from './CheckoutPage/InventoryCheckout'
 import InventorySignUp from './SignupPage/InventorySignUp'
-import InventoryUserList from './UserPage/InventoryUserList'
 import axios from 'axios'
 import {randomCount, randomPrice} from './foodParams'
 import Navbar from './Navbar/Navbar'
@@ -30,6 +28,7 @@ function InventoryBody() {
 
   useEffect(()=>{
     getHeroes()
+    console.log('loading...')
   }, [])
 
   // const getFood = () => {
@@ -51,7 +50,8 @@ function InventoryBody() {
     axios.get('https://web-scrapper01.herokuapp.com/dotaitem')
     .then((res) => {
       res.data.map((data) => (
-        data.type = 'item'
+        data.type = 'item',
+        data.stock = randomCount()
       ))
       console.log(res.data)
       setItemList(res.data)
@@ -132,7 +132,6 @@ function InventoryBody() {
       <Switch>
         <Route exact path="/add"><InventoryForm item={foodList} setItem={setFoodList} /></Route>
         <Route exact path="/login"><InventoryLogin newUser={newUser} setNewUser={setNewUser} logged={logged} setLogged={setLogged} setAdmin={setAdmin} setName={setName} /></Route>
-        <Route exact path="/users"><InventoryUser user={newUser} /></Route>
         <Route path="/home/:id"><InventoryDetails item={foodList} setItem={setItem} admin={admin} logged={logged} /></Route>
         <Route path="/checkout"><InventoryCheckout/></Route>
         <Route path="/signup"><InventorySignUp newUser={newUser} setNewUser={setNewUser} /></Route>

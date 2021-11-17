@@ -9,21 +9,33 @@ import {useSelector} from 'react-redux'
 import { set } from 'mongoose'
 import CryptoJS  from 'crypto-js'
 import '../styling/InventoryHome.css'
+import {useDispatch} from 'react-redux'
+import {addCart, updateCart} from '../../redux/reducers/cart-reducer';
 
 function InventoryHome({filterList, setFilterList, foodList, setFoodList, itemList}) {
+  const dispatch = useDispatch()
   const all = useSelector(state => state.user)
-  const [inputText, setInputText] = useState('')
-  const [secretText, setSecretText] = useState('')
-  const [inputDecText, setInputDecText] = useState('')
-  const [showDecText, setShowDecText] = useState('')
+  const cart = useSelector(state => state.cart)
   const [selectedItem, setSelectedItem] = useState({
-      name: 'Divine Rapier',
-      price: '6200',
-      description: '+250 damage, drops upon death'
-    })
+      name: 'Dagon 5',
+      price: '8005',
+      description: '+13 Intelligence, +9 damage, +3 All Stats, Energy Burst (active) 800 damage to a single target',
+      image: 'https://gaming-tools.com/warcraft-3/wp-content/uploads/sites/2/2020/04/Dagon-30x30.jpg'
+  })
+  
+  const clickHandler = () => {
+    const filteredCart = cart.filter(
+      (data) => data.cart.name.includes(selectedItem.name)
+    )
+    if(!filteredCart.length) {
+      dispatch(addCart(selectedItem))
+    } 
+    else {
+      dispatch(updateCart(filteredCart[0].id))
+    }
+  }
 
   const [search, setSearch] = useState('')
-  const history = useHistory()
   useEffect(() => {
     list(itemList)
   }, [search])
@@ -40,7 +52,8 @@ function InventoryHome({filterList, setFilterList, foodList, setFoodList, itemLi
     setSelectedItem({
       name: data.name,
       price: data.buy_price,
-      description: data.function
+      description: data.function,
+      image: data.image
     })
   }
 
@@ -48,8 +61,6 @@ function InventoryHome({filterList, setFilterList, foodList, setFoodList, itemLi
     if(data.name === selectedItem.name) return 'blur__image'
     return 'hover__image'
   }
-
-  
   //apply tooltip
   const showFoods = () => {
     return(
@@ -64,41 +75,24 @@ function InventoryHome({filterList, setFilterList, foodList, setFoodList, itemLi
     )
   }
 
-  const getRandom = () => {
-    console.log(randomCount())
-  }
-
-  const secretPassword = 'Im invincible babY!@'
-  const submitHandler = (e) => {
-    e.preventDefault()
-    const encriptedText = CryptoJS.AES.encrypt(inputText, secretPassword).toString();
-    console.log(encriptedText)
-    setSecretText(encriptedText)
-  }
-
-  const decriptHandler = (e) => {
-    e.preventDefault()
-    const decriptedText = CryptoJS.AES.decrypt(inputDecText, secretPassword);
-    const originalText = decriptedText.toString(CryptoJS.enc.Utf8);
-    setShowDecText(originalText)
-
-  }
-
   return (
     <div className="inventory__home">
-      <div className="inventoryHome__searchBox">
-        <input className="inventoryHome__search" placeholder="Search food" type="text" value={search} onChange={e => setSearch(e.target.value)} />
-        <img className="inventoryHome__icon" src={SearchIcon} alt="search icon" />
-      </div>
+      
       <div className="inventoryHome__items">
         <div className="inventoryHome__left">
-          <p className="item-name">{selectedItem.name}</p>
-          <p className="item-desc">{selectedItem.description}</p>
-          <p className="item-price">{selectedItem.price} gold</p>
-          <button className="inventoryHome__buy">Buy</button>
+          <div className="inventoryHomeLeft__details">
+            <p className="item-name">{selectedItem.name}</p>
+            <p className="item-desc">{selectedItem.description}</p>
+            <p className="item-price">{selectedItem.price} gold</p>
+            <button className="inventoryHome__buy" onClick={clickHandler}>Buy</button>
+          </div>
         </div>
         <div className="inventoryHome__right">
-          <h4>Buy item</h4>
+          <div className="inventoryHome__searchBox">
+            <input className="inventoryHome__search" placeholder="Search item" type="text" value={search} onChange={e => setSearch(e.target.value)} />
+            <img className="inventoryHome__icon" src={SearchIcon} alt="search icon" />
+          </div>
+          {!filterList?.length && <h4>No result found</h4>}
           {showFoods()}
         </div>
       </div>
