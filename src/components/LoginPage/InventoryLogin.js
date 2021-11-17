@@ -3,10 +3,11 @@ import {useHistory} from 'react-router-dom'
 import axios from 'axios'
 import {useDispatch} from 'react-redux'
 import LockIcon from '../../icons/lock-icon.svg'
-import UserIcon from '../../icons/user-icon.svg'
-import SignLogo from '../../icons/sign-logo.svg'
+import UserIcon from '../../icons/username-icon.svg'
+import ChickenImg from '../../img/fried-chicken.png'
 import {nameChange} from '../../redux/reducers/user-reducer';
 import {userState} from '../../redux/reducers/user-reducer';
+import '../styling/Login.css'
 
 function InventoryLogin({newUser, setNewUser, setLogged, logged, setAdmin, setName}) {
   const [account, setAccount] = useState({
@@ -91,37 +92,43 @@ function InventoryLogin({newUser, setNewUser, setLogged, logged, setAdmin, setNa
 
   return (
     <div className="login">
-      <img src={SignLogo} alt="logo" />
-      <h2 className="subtitle">Sign In</h2>
       {account.error && 
         <h2 className="errorMsg">Wrong username or password</h2>
       }
+      <div className="inventoryLogin__container">
+        <img className='inventoryLogin__left' src={ChickenImg} alt='chicken' />
         <form autoComplete="off"
-        onSubmit={handleSubmit} >
-        <div className="inventoryLogin__input">
-          <label>Username</label>
-          <img src={UserIcon} alt="user icon" />
-          <input
-            name="username"
-            required
-            autoComplete="off"
-            value={account.username} onChange={changeHandler}
-          />
-        </div>
-        <div className="inventoryLogin__input">
-          <label>Password</label>
-          <img src={LockIcon} alt="lock icon" />
-          <input
-            name="password"
-            required
-            autoComplete="off"
-            type="password"
-            value={account.password} onChange={changeHandler}
-          />
-        </div>
-        <button className="inventoryLogin__btn" type="submit" variant="contained">Submit</button>
-      </form>
-      <p className="inventorySign__btn" onClick={() => history.push('/signup')}>Create new account</p>
+          onSubmit={handleSubmit} >
+            <h2 className="login__title">Login</h2>
+          <div className="inventoryLogin__input">
+            <label className="login__label">Username</label>
+            <img className="login__icon" src={UserIcon} alt="user icon" />
+            <input
+              name="username"
+              required
+              autoComplete="off"
+              value={account.username} onChange={changeHandler}
+            />
+          </div>
+          <div className="inventoryLogin__input">
+            <label className="login__label">Password</label>
+            <img className="login__icon" src={LockIcon} alt="lock icon" />
+            <input
+              name="password"
+              required
+              autoComplete="off"
+              type="password"
+              value={account.password} onChange={changeHandler}
+            />
+          </div>
+          <div className="login__checkbox">
+            <input type="checkbox" />
+            <p>Remember me</p>
+          </div>
+          <button className="inventoryLogin__btn" type="submit" variant="contained">Submit</button>
+          <p className="inventorySign__btn" onClick={() => history.push('/signup')}>Create new account</p>
+        </form>
+      </div>
     </div>
   )
 }

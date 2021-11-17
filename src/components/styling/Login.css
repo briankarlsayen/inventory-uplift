@@ -1,0 +1,79 @@
+.login {
+  border: 1px solid black;
+  padding: 10px;
+  margin: 0 8em;
+  margin-top: 50px;
+  height: 90vh;
+  border-radius: 8px;
+}
+
+.inventoryLogin__container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.inventoryLogin__left {
+  width: 500px;
+  height: 500px;
+  margin: auto;
+}
+
+.inventoryLogin__container form {
+  flex: 1;
+  padding: 10px;
+  margin: auto 0;
+  max-width: 800px;
+}
+
+.login__title {
+  font-size: 3em;
+  font-weight: 600;
+}
+
+.inventoryLogin__input {
+  display: flex;
+  height: 35px;
+  margin: 45px 0;
+  justify-content: space-between;
+  position: relative;
+}
+
+.login__label {
+  position: absolute;
+  top: -26px;
+  left: 0px;
+}
+
+.login__icon {
+  width: 18px;
+  position: absolute;
+  top: 15px;
+  left: 11px;
+}
+
+.inventoryLogin__input input {
+  width: 100%;
+  padding: 5px;
+  height: 50px;
+  font-size: 18px;
+  padding-left: 40px;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid black;
+}
+
+.login__checkbox {
+  display: flex;
+  align-items: center;
+}
+
+.login__checkbox input {
+  margin-right: 10px;
+}
+
+.inventoryLogin__btn {
+  margin-top: 35px;
+  height: 50px;
+  width: 100%;
+  font-size: 18px;
+}

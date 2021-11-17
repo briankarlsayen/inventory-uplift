@@ -10,7 +10,7 @@ import { set } from 'mongoose'
 import CryptoJS  from 'crypto-js'
 import '../styling/InventoryHome.css'
 import {useDispatch} from 'react-redux'
-import {addCart, updateCart} from '../../redux/reducers/cart-reducer';
+import {addCart, increaseQuantity} from '../../redux/reducers/cart-reducer';
 
 function InventoryHome({filterList, setFilterList, foodList, setFoodList, itemList}) {
   const dispatch = useDispatch()
@@ -31,7 +31,7 @@ function InventoryHome({filterList, setFilterList, foodList, setFoodList, itemLi
       dispatch(addCart(selectedItem))
     } 
     else {
-      dispatch(updateCart(filteredCart[0].id))
+      dispatch(increaseQuantity(filteredCart[0].id))
     }
   }
 
