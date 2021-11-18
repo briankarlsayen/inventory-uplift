@@ -3,8 +3,11 @@ import {useHistory} from 'react-router-dom'
 import axios from 'axios'
 import {useDispatch} from 'react-redux'
 import LockIcon from '../../icons/lock-icon.svg'
+import ArrowDownIcon from '../../icons/arrow-down-icon.svg'
 import UserIcon from '../../icons/username-icon.svg'
-import ChickenImg from '../../img/fried-chicken.png'
+import WarningIcon from '../../icons/warning-icon.svg'
+import WarcraftImg from '../../img/warcraft-abaddon-img.jpg'
+import GarenaIcon from '../../icons/garena-icon.svg'
 import {nameChange} from '../../redux/reducers/user-reducer';
 import {userState} from '../../redux/reducers/user-reducer';
 import '../styling/Login.css'
@@ -92,16 +95,16 @@ function InventoryLogin({newUser, setNewUser, setLogged, logged, setAdmin, setNa
 
   return (
     <div className="login">
-      {account.error && 
-        <h2 className="errorMsg">Wrong username or password</h2>
-      }
       <div className="inventoryLogin__container">
-        <img className='inventoryLogin__left' src={ChickenImg} alt='chicken' />
+        <img className='inventoryLogin__left' src={WarcraftImg} alt='warcraft-img' />
         <form autoComplete="off"
           onSubmit={handleSubmit} >
-            <h2 className="login__title">Login</h2>
+            <div className="inventoryLoginContainer__logo">
+              <img className="inventoryLogin__logo" src={GarenaIcon} alt="garena-icon" />
+              <h2 className="login__title">Secret Shop</h2>
+            </div>
           <div className="inventoryLogin__input">
-            <label className="login__label">Username</label>
+            {/* <label className="login__label">Username</label> */}
             <img className="login__icon" src={UserIcon} alt="user icon" />
             <input
               name="username"
@@ -109,9 +112,10 @@ function InventoryLogin({newUser, setNewUser, setLogged, logged, setAdmin, setNa
               autoComplete="off"
               value={account.username} onChange={changeHandler}
             />
+            <img className="loginArrow__icon" src={ArrowDownIcon} alt="arrow down icon" />
           </div>
           <div className="inventoryLogin__input">
-            <label className="login__label">Password</label>
+            {/* <label className="login__label">Password</label> */}
             <img className="login__icon" src={LockIcon} alt="lock icon" />
             <input
               name="password"
@@ -123,10 +127,22 @@ function InventoryLogin({newUser, setNewUser, setLogged, logged, setAdmin, setNa
           </div>
           <div className="login__checkbox">
             <input type="checkbox" />
-            <p>Remember me</p>
+            <p>Remember Password</p>
           </div>
-          <button className="inventoryLogin__btn" type="submit" variant="contained">Submit</button>
-          <p className="inventorySign__btn" onClick={() => history.push('/signup')}>Create new account</p>
+          {account.error && 
+          <div className="invetoryLogin__error">
+            <img src={WarningIcon} alt="warning icon" />
+            <h2 className="errorMsg">Wrong username or password</h2>
+          </div>
+          }
+          <button className="inventoryLogin__btn" type="submit" variant="contained">Login</button>
+          <button className="inventorySign__btn" onClick={() => history.push('/signup')}>Create account</button>
+          <div className="inventoryForgot__container">
+            <p className="forgot__password">Forgot Password?</p>
+            <select className="language__select">
+              <option value='Englist'>English</option>
+            </select>  
+          </div>
         </form>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import userRestrict from "../../HOC/userRestrict";
+import '../styling/InventoryForm.css'
 
 function InventoryForm({setItem, item}) {
   const [itemTitle, setItemTitle] = useState('')
@@ -49,12 +50,11 @@ function InventoryForm({setItem, item}) {
   
   return (
     <div className="inventory__form">
-      <h2 className="subtitle">Add Inventory Form</h2>
       <form className="inventoryForm__form" 
         autoComplete="off"
         onSubmit={e => addItem(e)} >
+      <h2 className="subtitle">Add Inventory Form</h2>
       <div className="inventoryForm__input">
-        <label>Item name</label>
         <input
           required
           autoComplete="off"
@@ -63,7 +63,6 @@ function InventoryForm({setItem, item}) {
         />
       </div>
       <div className="inventoryForm__input">
-        <label>Item count</label>
         <input
           required
           autoComplete="off"
@@ -73,7 +72,6 @@ function InventoryForm({setItem, item}) {
         />
       </div>
       <div className="inventoryForm__input">
-        <label>Item type</label>
         <input
           required
           autoComplete="off"
@@ -82,7 +80,6 @@ function InventoryForm({setItem, item}) {
         />
       </div>
       <div className="inventoryForm__input">
-        <label>Item description</label>
         <input
           required
           autoComplete="off"
@@ -91,7 +88,6 @@ function InventoryForm({setItem, item}) {
         />
       </div>
       <div className="inventoryForm__input">
-        <label>Item price</label>
         <input
           required
           autoComplete="off"
@@ -101,7 +97,6 @@ function InventoryForm({setItem, item}) {
         />
       </div>
       <div className="inventoryForm__input">
-        <label>Item image</label>
         <input
           required
           autoComplete="off"
@@ -109,7 +104,7 @@ function InventoryForm({setItem, item}) {
           value={itemImage} onChange={(event)=> setItemImage(event.target.value)}
         />
       </div>
-      <button className="inventoryForm__btn" type="submit">Submit</button>
+      <button className="inventoryHome__buy" type="submit">Submit</button>
       </form>
     </div>
   )

@@ -10,7 +10,8 @@ const cartSlice = createSlice({
         const newItem = {
           id: Date.now(),
           cart: action.payload,
-          quantity: 1
+          quantity: 1,
+          checked: false,
         }
         state.push(newItem)
       },
@@ -27,9 +28,14 @@ const cartSlice = createSlice({
         update[0].quantity --
         return state
       },
+      updateChecked: (state, action) => {
+        const updateChecked = state.filter((cart) => cart.id === action.payload)
+        updateChecked[0].checked = !updateChecked[0].checked
+        return state
+      },
     }
 });
 
-export const {addCart, deleteCart, increaseQuantity, decreaseQuantity} = cartSlice.actions;
+export const {addCart, deleteCart, increaseQuantity, decreaseQuantity, updateChecked} = cartSlice.actions;
 
 export default cartSlice.reducer;

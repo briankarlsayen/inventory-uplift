@@ -1,6 +1,13 @@
 import React, {useState} from 'react'
 import {useHistory} from 'react-router-dom'
 import axios from 'axios'
+import StarImg from '../../img/star-img.png'
+import UserIcon from '../../icons/username-icon.svg'
+import LockIcon from '../../icons/lock-icon.svg'
+import EmailIcon from '../../icons/mail-icon.svg'
+import NumberIcon from '../../icons/mobile-icon.svg'
+import WarningIcon from '../../icons/warning-icon.svg'
+import BackIcon from '../../icons/back-icon.svg'
 
 function InventorySignUp({newUser, setNewUser}) {
   const history = useHistory()
@@ -95,51 +102,64 @@ function InventorySignUp({newUser, setNewUser}) {
 
   return (
     <div className="login">
-      <h2 className="subtitle">SignUp Form</h2>
-        {errorText && <p>{errorText}</p>}
-        <form autoComplete="off"
-        onSubmit={handleSubmit} >
-        <div className="inventoryLogin__input">
-          <label>Username: </label>
-          <input
-            name="username"
-            autoComplete="off"
-            placeholder="Username"
-            value={user.username} onChange={changeHandler}
-          />
+        <div className="inventoryLogin__container">
+          <div onClick={()=> history.push('/login')} className="inventorySignup__back">
+            <img src={BackIcon} alt="back icon" />
+            <p>Back</p>
+          </div>
+          <img className='inventoryLogin__left' src={StarImg} alt='warcraft-img' />
+          <form autoComplete="off"
+            onSubmit={handleSubmit} >
+            <h2 className="inventorySignUp__title">Sign up</h2>
+            <div className="inventoryLogin__input">
+              <img className="login__icon" src={UserIcon} alt="user icon" />
+              <input
+                name="username"
+                autoComplete="off"
+                placeholder="Username"
+                value={user.username} onChange={changeHandler}
+              />
+            </div>
+            <div className="inventoryLogin__input">
+              <img className="login__icon" src={LockIcon} alt="lock icon" />
+              <input
+                name="password"
+                autoComplete="off"
+                placeholder="Password"
+                type="text"
+                value={user.password} onChange={changeHandler}
+              />
+            </div>
+            <div className="inventoryLogin__input">
+              <img className="login__icon" src={EmailIcon} alt="lock icon" />
+              <input
+                name="email"
+                autoComplete="off"
+                placeholder="Email"
+                type="text"
+                value={user.email} onChange={changeHandler}
+              />
+            </div>
+            <div className="inventoryLogin__input">
+              <img className="login__icon" src={NumberIcon} alt="lock icon" />
+              <input
+                name="number"
+                autoComplete="off"
+                placeholder="Number"
+                type="text"
+                value={user.number} onChange={changeHandler}
+              />
+            </div>
+            {errorText && 
+              <div className="invetoryLogin__error">
+                <img src={WarningIcon} alt="warning icon" />
+                <h2 className="errorMsg">{errorText}</h2>
+              </div>
+            }
+            <button className="inventoryLogin__btn" type="submit" variant="contained">Submit</button>
+          </form>
         </div>
-        <div className="inventoryLogin__input">
-        <label>Password: </label>
-          <input
-            name="password"
-            autoComplete="off"
-            placeholder="Password"
-            type="text"
-            value={user.password} onChange={changeHandler}
-          />
-        </div>
-        <div className="inventoryLogin__input">
-        <label>Email: </label>
-          <input
-            name="email"
-            autoComplete="off"
-            placeholder="Email"
-            type="text"
-            value={user.email} onChange={changeHandler}
-          />
-        </div>
-        <div className="inventoryLogin__input">
-        <label>Number: </label>
-          <input
-            name="number"
-            autoComplete="off"
-            placeholder="number"
-            type="text"
-            value={user.number} onChange={changeHandler}
-          />
-        </div>
-        <button className="inventoryLogin__btn" type="submit" variant="contained">Submit</button>
-      </form>
+        
     </div>
   )
 }

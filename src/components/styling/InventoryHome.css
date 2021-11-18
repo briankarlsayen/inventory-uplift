@@ -2,6 +2,8 @@
   padding: 0 16em;
   height: 90vh;
   position: relative;
+  background: rgb(14,21,48);
+  background: linear-gradient(90deg, rgba(14,21,48,1) 0%, rgba(2,74,133,1) 38%, rgba(14,21,48,1) 100%);
 }
 
 .inventoryHome__searchBox {
@@ -19,6 +21,7 @@
   border-radius: 5px;
   border: none;
   outline: none;
+  font-size: 16px;
 }
 
 .inventoryHome__icon {
@@ -33,6 +36,7 @@
   height: 100%;
   background-image: url(lichking-img.png);
   background-repeat: no-repeat;
+  color: white;
 }
 
 .inventoryHome__left {
@@ -41,6 +45,7 @@
 }
 
 .inventoryHomeLeft__details {
+  font-size: 16px;
   background-color: rgb(23,22,18, 0.7);
   color: white;
   margin: auto;
@@ -55,22 +60,19 @@
   font-weight: 600;
 }
 
-.item-desc {
-  font-size: 1.2em;
-}
-
 .item-price {
   padding: 0.5em 0;
   margin-bottom: 1em;
 }
 
 .inventoryHome__buy {
-  height: 40px;
-  width: 400px;
-  margin-left: 10px;
-  font-size: 1.5em;
+  height: 60px;
+  width: 100%;
+  font-size: 18px;
   background-color: #f6ff00;
   border-radius: 5px;
+  text-transform: uppercase;
+  border: none;
 }
 
 .inventoryHome__buy:hover {

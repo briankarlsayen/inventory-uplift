@@ -8,6 +8,7 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.23.0",
+    "concurrently": "^6.4.0",
     "crypto-js": "^4.1.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
@@ -23,8 +24,9 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "react-scripts --openssl-legacy-provider start",
+    "start": "set PORT=3006 && react-scripts --openssl-legacy-provider start",
     "frontend": "set PORT=3006 && react-scripts start",
+    "fullstack": "concurrently \"npm run start\" \"npm run dev\"",
     "build": "react-scripts build",
     "dev": "nodemon server.js",
     "test": "react-scripts test",
@@ -47,6 +49,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {}
+  }
 }

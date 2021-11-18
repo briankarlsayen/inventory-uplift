@@ -1,10 +1,10 @@
 import React from 'react'
 
-function InventoryCheckoutItem({item, removeItem, decreaseItem, increaseItem}) {
+function InventoryCheckoutItem({item, removeItem, decreaseItem, increaseItem, updateItem}) {
   const totalPrice = item.quantity * item.cart.price
   return (
     <div className="inventoryCheckout__item">
-      <input className="inventoryCheckoutItem__checkBox" type="checkbox" />
+      <input className="inventoryCheckoutItem__checkBox" type="checkbox" defaultChecked={item.checked} onChange={() => updateItem(item.id)}/>
       <div className="inventoryCheckoutItem__right">
         <img className="inventoryCheckoutItem__image" src={item.cart.image} alt={item.cart.name} />
         <div className="inventoryCheckoutItem__text">

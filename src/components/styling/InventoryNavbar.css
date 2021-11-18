@@ -14,18 +14,20 @@ body {
   position: relative;
   width: 160px;
   top: -9px;
-  left: 0px
+  left: 0px;
 }
 
 .logo__text1 {
   position: absolute;
   top: 0px;
   left: 0px;
+  color: #008DFF;
 }
 .logo__text2 {
   position: absolute;
   top: 0px;
   left: 91px;
+  color: #008DFF;
 }
 
 .inventory__nav {
@@ -59,12 +61,11 @@ nav ul li a {
 
 .inventory__nav ul p:hover {
   cursor: pointer;
+  color: #3E85B8;
 }
 
 .nav__active {
-  border-bottom: 2px solid red;
-  padding-bottom: 3px;
-  color: var(--titleColor);
+  color: #3E85B8;
 }
 
 .nav__logoText {
@@ -87,6 +88,10 @@ nav ul {
 nav ul li {
   margin-right: 30px;
 }
+nav ul li a:hover {
+  color: #3E85B8 !important;
+}
+
 
 nav ul li img {
   margin-top: 5px;

@@ -61,13 +61,6 @@ p span {
   margin: auto !important;
 }
 
-.errorMsg {
-  color: red;
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: uppercase;
-}
-
 :root {
   --navColor: #311e10;
   --titleColor: #dd6031;
