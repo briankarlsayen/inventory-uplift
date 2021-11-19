@@ -3,16 +3,26 @@ const { ObjectId } = mongoose.Schema.Types;
 
 const userSchema = new mongoose.Schema(
  {
+  username: {
+    type: String,
+    required: true
+  },
+  password: {
+    type: String,
+    required: true
+  },
   name: {
    type: String,
+   required: true
   },
-  branchId: {
-    type: ObjectId
+  email: {
+    type: String,
+    required: true
   },
-  isDeleted: {
+  isAdmin: {
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
  },
  { timestamps: true }
 );

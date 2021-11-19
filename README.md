@@ -15,8 +15,16 @@ fri - BE
 - [x] signup design
 - [x] add item design
 [ ] integrate mongodb
-- [ ] user model
-- [ ] item model
+- [x] user model
+- [x] product model
+- [ ] cart model
 - [ ] add heroitem and mongoitem
 - [ ] CRUD mongodb
 - [ ] integrate CRUD 
+
+### logics
+[ ] user create also create cart
+[ ] CRUD cart functions
+[ ] user login session
+- [ ] jwt
+- [ ] bcrypt password
