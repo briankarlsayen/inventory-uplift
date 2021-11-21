@@ -5,6 +5,8 @@ require('dotenv').config()
 const {PORT} = process.env;
 const userRouter = require('./routes/user.routes')
 const productRouter = require('./routes/product.routes')
+const authRouter = require('./routes/auth.routes')
+const cartRouter = require('./routes/cart.routes')
 //connect to mongodb
 mongoose.connect(
   process.env.MONGODB_URL,
@@ -20,7 +22,9 @@ mongoose.connection.once('open', () => {
 app.use(
   express.json(),
   userRouter,
-  productRouter
+  productRouter,
+  authRouter,
+  cartRouter,
 )
 
 app.get('/', (req, res)=> {

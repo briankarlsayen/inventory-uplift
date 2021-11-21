@@ -3,29 +3,6 @@ const jwt = require("jsonwebtoken");
 const User = require('../model/UserModel.js')
 const { ObjectId } = require("mongodb");
 
-exports.createUser = async (req, res) => {
-  const {
-    username,
-    name,
-    email,
-    password,
-  } = req.body
-
-  User({
-    username,
-    name,
-    email,
-    password,
-  })
-  .save()
-  .then((result) => {
-    res.status(201).json({result})
-  })
-  .catch((err) => {
-    res.status(500).json({message: err})
-  })
-}
-
 exports.viewAllUser = async (req, res) => {
   User.find()
   .then(result => {

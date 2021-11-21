@@ -15,7 +15,11 @@ fri - BE
 - [x] signup design
 - [x] add item design
 [ ] integrate mongodb
-- [x] user model
+- [ ] user model
+- - [ ] encrypt password before saving
+- - [ ] auth route
+- - - [ ] login function
+- - - [ ] register function
 - [x] product model
 - [ ] cart model
 - [ ] add heroitem and mongoitem
