@@ -24,9 +24,15 @@ fri - BE
 - - - [x] register function
 - [x] product model
 - [ ] cart model
-- [ ] add heroitem and mongoitem
-- [ ] CRUD mongodb
-- [ ] integrate CRUD
+- [ ] login function
+- - [x] verifyToken middleware
+- - [ ] add verifyToken on routes
+- [ ] integrate login function
+- - [ ] save token to localstorage
+- - [ ] verify user isAdmin
+- [ ] integrate register function
+- [ ] integrate product API
+- [ ] integrate cart API
 
 ### logics
 

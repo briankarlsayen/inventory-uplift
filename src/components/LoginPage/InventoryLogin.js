@@ -18,12 +18,13 @@ function InventoryLogin({newUser, setNewUser, setLogged, logged, setAdmin, setNa
     password: '',
     error: false
   })
+  const [errorMsg, setErrorMsg] = useState('')
   const history = useHistory()
   const dispatch = useDispatch()
 
-  useEffect(()=> {
-    getUser()
-  },[])
+  // useEffect(()=> {
+  //   getUser()
+  // },[])
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -76,14 +77,17 @@ function InventoryLogin({newUser, setNewUser, setLogged, logged, setAdmin, setNa
 
 
   //login
-  const loginHandler = () => {
-      axios.post('/login', {username: account.username, password: account.password})
-      .then((res) => {
-        console.log(res)
-      })
-      .catch((err)=> {
-        console.log(err.message)
-      })
+  const loginHandler = async() => {
+    try {
+      const login = await axios.post('/login', {username: account.username, password: account.password})
+      console.log(login)
+      if(login.status === 201){
+        localStorage.setItem('auth-token', res.data.accessToken)
+        history.push("/home");
+      }
+    } catch(err) {
+      setErrorMsg(err.response.data.message)
+    }
   }
 
   const changeHandler = (event) => {
@@ -141,10 +145,10 @@ function InventoryLogin({newUser, setNewUser, setLogged, logged, setAdmin, setNa
             <input type="checkbox" />
             <p>Remember Password</p>
           </div>
-          {account.error && 
+          {errorMsg && 
           <div className="invetoryLogin__error">
             <img src={WarningIcon} alt="warning icon" />
-            <h2 className="errorMsg">Wrong username or password</h2>
+            <h2 className="errorMsg">{errorMsg}</h2>
           </div>
           }
           <button className="inventoryLogin__btn" type="submit" variant="contained">Login</button>
