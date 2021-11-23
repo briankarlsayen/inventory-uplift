@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {useHistory} from 'react-router-dom'
-import axios from 'axios'
+import axios from '../axios'
 import {useDispatch} from 'react-redux'
 import LockIcon from '../../icons/lock-icon.svg'
 import ArrowDownIcon from '../../icons/arrow-down-icon.svg'
@@ -27,20 +27,20 @@ function InventoryLogin({newUser, setNewUser, setLogged, logged, setAdmin, setNa
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    checkUser()
+    loginHandler()
   }
 
-  const getUser = () => {
-    axios.get('https://jsonplaceholder.typicode.com/users')
-    .then((res)=> {
-      let addUser = {...newUser}
-      const newArr = addUser.user.concat(res.data)
-      setNewUser(newArr)
-    })
-    .catch((err) => {
-      console.log(err)
-    })
-  }
+  // const getUser = () => {
+  //   axios.get('/viewuser')
+  //   .then((res)=> {
+  //     let addUser = {...newUser}
+  //     const newArr = addUser.user.concat(res.data)
+  //     setNewUser(newArr)
+  //   })
+  //   .catch((err) => {
+  //     console.log(err)
+  //   })
+  // }
 
   const checkUser = () => {
     for(let i =0 ; i < 10 ; i++){
@@ -72,6 +72,18 @@ function InventoryLogin({newUser, setNewUser, setLogged, logged, setAdmin, setNa
       //   setError(true)
       // }
     }
+  }
+
+
+  //login
+  const loginHandler = () => {
+      axios.post('/login', {username: account.username, password: account.password})
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err)=> {
+        console.log(err.message)
+      })
   }
 
   const changeHandler = (event) => {

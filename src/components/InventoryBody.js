@@ -53,7 +53,7 @@ function InventoryBody() {
         data.type = 'item',
         data.stock = randomCount()
       ))
-      console.log(res.data)
+      // console.log(res.data)
       setItemList(res.data)
       setFilterList(res.data)
     })
