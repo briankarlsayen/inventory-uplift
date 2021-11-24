@@ -55,6 +55,7 @@
 }
 
 .item-name {
+  text-transform: capitalize;
   font-size: 2em;
   margin-bottom: 20px;
   font-weight: 600;
@@ -104,7 +105,10 @@
 
 .inventoryHomeItem__img {
   height: 35px;
+  width: 35px;
   object-fit: cover;
+  background-color: black;
+  border: 1px solid white;
 }
 
 .hover__image:hover {

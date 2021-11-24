@@ -1,52 +1,41 @@
 import React, {useState} from 'react'
+import axios from '../axios'
 import userRestrict from "../../HOC/userRestrict";
 import '../styling/InventoryForm.css'
+import {useHistory} from 'react-router-dom'
 
 function InventoryForm({setItem, item}) {
-  const [itemTitle, setItemTitle] = useState('')
-  const [itemCount, setItemCount] = useState()
+  const [itemName, setItemName] = useState('')
+  const [itemStock, setItemStock] = useState()
   const [itemPrice, setItemPrice] = useState('')
   const [itemDescription, setItemDescription] = useState('')
   const [itemType, setItemType] = useState('')
   const [itemImage, setItemImage] = useState('')
+  const history = useHistory()
 
-  const addItem = (e) => {
+  const addItem = async(e) => {
     e.preventDefault()
-    let newItem = {...item}
-    // const toAdd ={
-    //   title: itemTitle,
-    //   available: true,
-    //   count: Number(itemCount),
-    //   price: itemPrice,
-    //   description: itemDescription,
-    //   type: itemType,
-    //   // id: id++
-    //   image: itemImage
-    
-    const toAdd ={
-      title: itemTitle,
-      available: true,
-      count: Number(itemCount),
-      price: itemPrice,
-      description: itemDescription,
-      type: itemType,
-      // id: id++
-      image: itemImage
+    try {
+      const add = await axios.post('/createproduct', {
+        name: itemName,
+        functions: itemDescription,
+        buy_price: Number(itemPrice),
+        stock: Number(itemStock),
+        type: "item",
+        image: itemImage
+      })
+      if(add.status === 201) {
+        alert('Item successfully added')
+        setItemName('')
+        setItemStock('')
+        setItemDescription('')
+        setItemPrice('')
+        setItemImage('')
+      }
+    } catch(err) {
+      console.log(err)
     }
-    // const resetItemInput = () => {
-    //   setItemTitle('')
-    //   setItemCount(0)
-    //   setItemPrice(0)
-    //   setItemDescription('')
-    //   setItemType('')
-    //   setItemImage('')
-    // }
-    // newItem.items.push(toAdd)
-    // setItem(newItem)
-    // resetItemInput()
-    console.log(newItem)
   }
-
   
   return (
     <div className="inventory__form">
@@ -59,7 +48,7 @@ function InventoryForm({setItem, item}) {
           required
           autoComplete="off"
           placeholder="Item name"
-          value={itemTitle} onChange={(event)=> setItemTitle(event.target.value)}
+          value={itemName} onChange={(event)=> setItemName(event.target.value)}
         />
       </div>
       <div className="inventoryForm__input">
@@ -68,17 +57,17 @@ function InventoryForm({setItem, item}) {
           autoComplete="off"
           type="number"
           placeholder="Item count"
-          value={itemCount} onChange={(event)=> setItemCount(event.target.value)}
+          value={itemStock} onChange={(event)=> setItemStock(event.target.value)}
         />
       </div>
-      <div className="inventoryForm__input">
+      {/* <div className="inventoryForm__input">
         <input
           required
           autoComplete="off"
           placeholder="Item type"
           value={itemType} onChange={(event)=> setItemType(event.target.value)}
         />
-      </div>
+      </div> */}
       <div className="inventoryForm__input">
         <input
           required
@@ -110,4 +99,4 @@ function InventoryForm({setItem, item}) {
   )
 }
 
-export default userRestrict(InventoryForm)
+export default InventoryForm

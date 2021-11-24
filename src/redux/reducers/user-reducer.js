@@ -3,21 +3,33 @@ import {createSlice} from '@reduxjs/toolkit'
 export const userSlice = createSlice({
   name: 'user',
   initialState: {
-      id: 0,
-      name: '',
-      username: '',
-      cart: [],
-      logged: false
+      user:[{
+        id: '',
+        username: '',
+        name: '',
+        email: '',
+        isAdmin: false
+      }]
   },
   reducers: {
+    //delete <---
     nameChange: (state, action) => {
       state.name = action.payload
     },
     userNameChange: (state, action) => {
       state.username = action.payload
     },
+    // --->
     userState: (state, action) => {
-      state.logged = action.payload
+      // state.user = action.payload
+      const newUser = [{
+        id: action.payload._id,
+        username: action.payload.username,
+        name: action.payload.name,
+        email: action.payload.email,
+        isAdmin: action.payload.isAdmin,
+      }]
+      state.user = newUser
     }
   }
 })

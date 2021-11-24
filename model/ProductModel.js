@@ -31,7 +31,7 @@ const productschema = new mongoose.Schema(
   },
   image: {
     type: String,
-    default: ""
+    default: "https://i.pinimg.com/originals/6d/d7/56/6dd7567ef378593b7da07440227f4a39.jpg"
   },
 
  },

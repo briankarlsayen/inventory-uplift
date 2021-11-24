@@ -16,7 +16,7 @@ fri - BE
 - [x] login design
 - [x] signup design
 - [x] add item design
-      [ ] integrate mongodb
+      [x] integrate mongodb
 - [x] user model
 - - [x] encrypt password before saving
 - - [x] auth route
@@ -26,10 +26,17 @@ fri - BE
 - [ ] cart model
 - [ ] login function
 - - [x] verifyToken middleware
+- - [x] save token as auth-token
+- - [x] retrieve token
 - - [ ] add verifyToken on routes
-- [ ] integrate login function
-- - [ ] save token to localstorage
-- - [ ] verify user isAdmin
+- [x] integrate login function
+- - [x] save token to localstorage
+- - [x] verify user isAdmin
+- [ ] integrate product
+- - [x] combine heroItem and products
+- - [ ] integrate add product function
+- - - [ ] update cart (not priority)
+- [ ] integrate cart
 - [ ] integrate register function
 - [ ] integrate product API
 - [ ] integrate cart API

@@ -6,16 +6,20 @@ import userRestrict from '../../HOC/userRestrict'
 import {randomCount, randomPrice} from '../foodParams'
 import {useHistory} from 'react-router-dom'
 import {useSelector} from 'react-redux'
-import { set } from 'mongoose'
-import CryptoJS  from 'crypto-js'
 import '../styling/InventoryHome.css'
 import {useDispatch} from 'react-redux'
+import axios from 'axios'
+import instance from '../axios'
 import {addCart, increaseQuantity} from '../../redux/reducers/cart-reducer';
+import jwt from 'jsonwebtoken'
+import {userState} from '../../redux/reducers/user-reducer';
 
-function InventoryHome({filterList, setFilterList, foodList, setFoodList, itemList}) {
+function InventoryHome() {
   const dispatch = useDispatch()
   const all = useSelector(state => state.user)
   const cart = useSelector(state => state.cart)
+  const [itemList, setItemList] = useState([])
+  const [filterList, setFilterList] = useState()
   const [selectedItem, setSelectedItem] = useState({
       name: 'Dagon 5',
       price: '8005',
@@ -23,6 +27,45 @@ function InventoryHome({filterList, setFilterList, foodList, setFoodList, itemLi
       image: 'https://gaming-tools.com/warcraft-3/wp-content/uploads/sites/2/2020/04/Dagon-30x30.jpg'
   })
   
+  useEffect(()=> {
+    getHeroes()
+    const token = localStorage.getItem('auth-token')
+    const decoded = jwt.decode(token)
+    if(token){
+      axios.defaults.headers.common['auth-token'] = token
+      getUserData(decoded)
+    }
+  },[])
+
+  const getHeroes = async() => {
+    try {
+      const itemArr = []
+      const heroItem = await axios.get('https://web-scrapper01.herokuapp.com/dotaitem')
+      const item = await instance.get('/viewproduct')
+      if(heroItem.status === 200) {
+        heroItem.data.map((data) => (
+          data.type = 'item',
+          data.stock = randomCount()
+        ))
+        if(item.status === 201) {
+          itemArr.push(...heroItem.data,...item.data.result)
+        }
+      
+      }
+      setItemList(itemArr)
+      setFilterList(itemArr)
+    } catch(err) {
+      console.log(err)
+    }
+  }
+
+  const getUserData = async(decoded) => {
+    const user = await instance.get(`/viewuser/${decoded.id}`)
+    if(user) {
+      dispatch(userState(user.data.result[0]))
+    }
+  }
+
   const clickHandler = () => {
     const filteredCart = cart.filter(
       (data) => data.cart.name.includes(selectedItem.name)
