@@ -27,7 +27,7 @@ const productschema = new mongoose.Schema(
   },
   type: {
     type: String,
-    default: "item"
+    default: "created-item"
   },
   image: {
     type: String,

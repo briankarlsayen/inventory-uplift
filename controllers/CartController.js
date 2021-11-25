@@ -14,8 +14,9 @@ exports.createCart = async (req, res) => {
 }
 
 exports.viewCart = async (req, res) => {
+  const _id = req.params.id
   try {
-    const cart = await Cart.find()
+    const cart = await Cart.findOne({userId: _id})
     res.status(201).json(cart)
   } catch(err) {
     res.status(500).json({message: err})
@@ -50,7 +51,7 @@ exports.addCart = async (req, res) => {
 
 exports.updateCart = async(req, res) => {
   try {
-    const cart = await Cart.findByIdAndUpdate(
+    const cart = await Cart.findOneAndUpdate(
       req.params.id,
       {
         $set: req.body

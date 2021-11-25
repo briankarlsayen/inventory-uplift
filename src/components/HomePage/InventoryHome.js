@@ -18,13 +18,16 @@ function InventoryHome() {
   const dispatch = useDispatch()
   const all = useSelector(state => state.user)
   const cart = useSelector(state => state.cart)
+  const [userId, setUserId] = useState('')
   const [itemList, setItemList] = useState([])
   const [filterList, setFilterList] = useState()
   const [selectedItem, setSelectedItem] = useState({
       name: 'Dagon 5',
       price: '8005',
       description: '+13 Intelligence, +9 damage, +3 All Stats, Energy Burst (active) 800 damage to a single target',
-      image: 'https://gaming-tools.com/warcraft-3/wp-content/uploads/sites/2/2020/04/Dagon-30x30.jpg'
+      image: 'https://gaming-tools.com/warcraft-3/wp-content/uploads/sites/2/2020/04/Dagon-30x30.jpg',
+      type: 'item',
+      stock: 19,
   })
   
   useEffect(()=> {
@@ -34,6 +37,7 @@ function InventoryHome() {
     if(token){
       axios.defaults.headers.common['auth-token'] = token
       getUserData(decoded)
+      setUserId(decoded.id)
     }
   },[])
 
@@ -66,15 +70,38 @@ function InventoryHome() {
     }
   }
 
-  const clickHandler = () => {
-    const filteredCart = cart.filter(
-      (data) => data.cart.name.includes(selectedItem.name)
-    )
-    if(!filteredCart.length) {
-      dispatch(addCart(selectedItem))
-    } 
-    else {
-      dispatch(increaseQuantity(filteredCart[0].id))
+  const clickHandler = async() => {
+    // const filteredCart = cart.filter(
+    //   (data) => data.cart.name.includes(selectedItem.name)
+    // )
+    // if(!filteredCart.length) {
+    //   dispatch(addCart(selectedItem))
+    // } 
+    // else {
+    //   dispatch(increaseQuantity(filteredCart[0].id))
+    // }
+
+    const item = {
+      name: selectedItem.name,
+      buy_price: selectedItem.price,
+      function: selectedItem.description,
+      image: selectedItem.image,
+      type: selectedItem.type,
+      stock: selectedItem.stock,
+      quantity: 1
+    }
+
+    const cart = await instance.get(`/viewcart/${userId}`)
+
+    if(userId) {
+      const addCart = await instance.put(`/updatecart/${userId}`,
+      {
+        userId: userId,
+        products: [
+          ...cart.data.products, item
+        ]
+      })
+      if(addCart.status === 201) return alert('Successfully added to cart')
     }
   }
 
@@ -96,7 +123,10 @@ function InventoryHome() {
       name: data.name,
       price: data.buy_price,
       description: data.function,
-      image: data.image
+      image: data.image,
+      stock: data.stock,
+      image: data.image,
+      type: data.type,
     })
   }
 
@@ -117,6 +147,18 @@ function InventoryHome() {
       </>
     )
   }
+
+  // const addToCart = async() => {
+  //   const add = await instance.post('/updatecart', {
+  //     name: "",
+  //     function: "",
+  //     buy_price: "",
+  //     stock: "",
+  //     type: "",
+  //     image: ""
+  //   })
+  //   console.log(add)
+  // }
 
   return (
     <div className="inventory__home">

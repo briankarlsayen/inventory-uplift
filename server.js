@@ -27,10 +27,10 @@ app.use(
   express.json(),
   productRouter,
   authRouter,
-  userRouter
+  userRouter,
+  cartRouter
 )
 
-app.use('/', verifyToken, cartRouter)
 
 // app.get('/secret', verifyToken, function(req, res) {
 //   res.status(201).json('secret')

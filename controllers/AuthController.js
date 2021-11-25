@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const User = require('../model/UserModel.js')
+const Cart = require('../model/CartModel')
 const { ObjectId } = require("mongodb");
 const CryptoJS = require('crypto-js')
 
@@ -34,8 +35,12 @@ exports.registerAuth = async (req, res) => {
       process.env.SECRET
     ).toString()
   })
+  const cart = new Cart({
+    userId: user._id
+  })
   try {
     user.save()
+    cart.save()
     res.status(201).json({message: "Successfully created"})
   } 
   catch(err){
